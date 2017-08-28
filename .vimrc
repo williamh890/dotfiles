@@ -68,3 +68,7 @@ endfun
 if has("autocmd")
     autocmd BufWritePre *.txt, *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
 endif 
+
+" remap escape to caps lock
+imap jj <Esc>  
+
