@@ -1,6 +1,6 @@
 set history=500
 set number
-syntax on
+
 set tabstop=3
 set autoindent
 " Always shows the current positions
@@ -30,10 +30,13 @@ set tm=500
 
 set foldcolumn=1
 
-syntax enable
-
 " https://github.com/rhysd/vim-color-spring-night
+syntax enable
+set t_Co=256
+set background=dark
 colorscheme spring-night
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
 
 set ffs=unix,dos,mac
 
@@ -41,6 +44,10 @@ set nobackup
 set nowb
 set noswapfile
 
+set relativenumber 
+set number  
+
+    
 " Tabs are smarter!
 set expandtab
 set smarttab
@@ -72,3 +79,36 @@ endif
 " remap escape to caps lock
 imap jj <Esc>  
 
+" remap keys to change windows
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
+
+" alt-# to change tabs
+nnoremap <A-F1> 1gt
+nnoremap <A-F2> 2gt
+nnoremap <A-F3> 3gt
+nnoremap <A-F4> 4gt
+nnoremap <A-F5> 5gt
+nnoremap <A-F6> 6gt
+nnoremap <A-F7> 7gt
+nnoremap <A-F8> 8gt
+nnoremap <A-F9> 9gt
+nnoremap <A-F0> 10gt
+
+" Plugins
+
+" Ctr-p options
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" Put these lines at the very end of your vimrc file.
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
