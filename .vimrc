@@ -18,6 +18,10 @@ Plugin 'tpope/vim-repeat'
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdtree'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 set history=500
 set number
@@ -121,13 +125,15 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 " Plugins
 
+" NerdTree
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
 " Ctr-p options
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
 
 " Minimap
 let g:minimap_show='<leader>ms'
