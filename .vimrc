@@ -16,11 +16,13 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'severin-lemaignan/vim-minimap'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 set history=500
 set number
 
-set tabstop=3
+set tabstop=4
 set autoindent
 " Always shows the current positions
 set ruler
@@ -39,15 +41,11 @@ set magic
 
 set showmatch
 
-set mat=2
-
 " Remove the bell sounds
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-set foldcolumn=1
 
 " https://github.com/rhysd/vim-color-spring-night
 syntax enable
@@ -62,7 +60,7 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-
+set cmdheight=1
 set relativenumber 
 set number  
     
@@ -136,6 +134,9 @@ let g:minimap_show='<leader>ms'
 let g:minimap_update='<leader>mu'
 let g:minimap_close='<leader>gc'
 let g:minimap_toggle='<leader>gt'
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
 
 " Put these lines at the very end of your vimrc file.
 
