@@ -1,3 +1,6 @@
+let mapleader = ","
+let g:mapleader = ","
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -10,6 +13,9 @@ call vundle#begin()
 " " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'severin-lemaignan/vim-minimap'
 
 set history=500
 set number
@@ -59,7 +65,6 @@ set noswapfile
 
 set relativenumber 
 set number  
-
     
 " Tabs are smarter!
 set expandtab
@@ -110,6 +115,12 @@ nnoremap <A-F8> 8gt
 nnoremap <A-F9> 9gt
 nnoremap <A-F0> 10gt
 
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 " Plugins
 
 " Ctr-p options
@@ -119,6 +130,12 @@ let g:ctrlp_cmd = 'CtrlP'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" Minimap
+let g:minimap_show='<leader>ms'
+let g:minimap_update='<leader>mu'
+let g:minimap_close='<leader>gc'
+let g:minimap_toggle='<leader>gt'
 
 " Put these lines at the very end of your vimrc file.
 
