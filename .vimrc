@@ -20,6 +20,7 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
+Plugin 'easymotion/vim-easymotion'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -27,7 +28,9 @@ filetype plugin indent on    " required
 set history=500
 set number
 
-set tabstop=4
+set hls
+set is
+set nocp
 set autoindent
 " Always shows the current positions
 set ruler
@@ -65,7 +68,6 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-set cmdheight=1
 set relativenumber 
 set number  
     
@@ -86,7 +88,7 @@ set wrap "wrap lines
 
 " Delete trailing white space on save
 fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
+     let save_cursor = getpos(".")
 	 let old_query = getreg("/")
 	 silent! %s/\s\+$\\e
 	 call setpos('.', save_cursor)
@@ -105,18 +107,6 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
-
-" alt-# to change tabs
-nnoremap <A-F1> 1gt
-nnoremap <A-F2> 2gt
-nnoremap <A-F3> 3gt
-nnoremap <A-F4> 4gt
-nnoremap <A-F5> 5gt
-nnoremap <A-F6> 6gt
-nnoremap <A-F7> 7gt
-nnoremap <A-F8> 8gt
-nnoremap <A-F9> 9gt
-nnoremap <A-F0> 10gt
 
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
