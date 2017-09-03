@@ -127,6 +127,13 @@ inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
+
+
+inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
+
+autocmd FileType py inoremap ;c oclass $name$(object):<Enter><Tab>def __init__(self):<Enter><Tab><++><Esc>?$name$<Enter>ct(
+
+
 " Plugins
 
 " NerdTree
