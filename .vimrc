@@ -68,7 +68,10 @@ set noswapfile
 set cmdheight=1
 set relativenumber 
 set number  
-    
+
+" Toggle Spellcheck
+map <F6> :setlocal spell! spelllang=en_us<CR>
+
 " Tabs are smarter!
 set expandtab
 set smarttab
