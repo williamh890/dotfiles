@@ -21,6 +21,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'mkitt/tabline.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -68,9 +69,9 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-set relativenumber 
-set number  
-    
+set relativenumber
+set number
+
 " Tabs are smarter!
 set expandtab
 set smarttab
@@ -86,21 +87,22 @@ set ai "auto indent
 set si "smart indent
 set wrap "wrap lines
 
-" Delete trailing white space on save
-fun! CleanExtraSpaces()
-     let save_cursor = getpos(".")
-	 let old_query = getreg("/")
-	 silent! %s/\s\+$\\e
-	 call setpos('.', save_cursor)
-	 call setreg('/', old_query)
-endfun
+fun! <SID>StripTrailingWhitespaces()
+        let l = line(".")
+            let c = col(".")
+                %s/\s\+$//e
+                    call cursor(l, c)
+                endfun
+
+                autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 if has("autocmd")
     autocmd BufWritePre *.txt, *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
-endif 
+endif
+
 
 " remap escape to caps lock
-imap jj <Esc>  
+imap jj <Esc>
 
 " remap keys to change windows
 nnoremap <C-J> <C-W>j
