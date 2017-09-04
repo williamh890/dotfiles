@@ -25,6 +25,8 @@ Plugin 'mkitt/tabline.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'atweiden/vim-dragvisuals'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'tell-k/vim-autopep8'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -150,12 +152,16 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 
-inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
+inoremap j<Space> <Esc>/<++><Enter>"_c4l
 
 autocmd FileType python inoremap ;c oclass $name$(object):<Enter><Tab>def __init__(self):<Enter><Tab><++><Esc>?$name$<Enter>ct(
 
 
 " Plugins
+
+" Flake8 autoformater
+let g:autopep8_disable_show_diff=1
+autocmd BufWritePost *.py call Autopep8()
 
 " visualdrag keys
 vmap <expr> <LEFT> DVB_Drag('left')
