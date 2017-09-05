@@ -100,9 +100,6 @@ if has("autocmd")
     autocmd BufWritePre *.txt, *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
 endif 
 
-" remap escape to caps lock
-imap jj <Esc>  
-
 " remap keys to change windows
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
@@ -128,10 +125,12 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+inoremap j<Space> <Esc>/<++><Enter>"_d4li<Space>
 
-inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
-
-autocmd FileType py inoremap ;c oclass $name$(object):<Enter><Tab>def __init__(self):<Enter><Tab><++><Esc>?$name$<Enter>ct(
+autocmd FileType python nnoremap <leader>c oclass $name$(object):<Enter>def __init__(self):<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>m odef $name$(self):<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>f odef $name$():<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>p o@property<Enter>def $name$(self):<Enter><++><Esc>?$name<Enter>ct(
 
 
 " Plugins
