@@ -20,14 +20,32 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'mkitt/tabline.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'atweiden/vim-dragvisuals'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'tell-k/vim-autopep8'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 set history=500
 set number
+set hlsearch
 
-set tabstop=4
+" Warning when lines are longer then 80 characters.
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+" Easier commands
+nnoremap ; :
+
+"nnoremap <silent> n n:call HLNext(0.4)<cr>
+"nnoremap <silent> N N:call HLNext(0.4)<cr>
+
+set nocp
 set autoindent
 " Always shows the current positions
 set ruler
@@ -65,9 +83,9 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-set cmdheight=1
-set relativenumber 
-set number  
+
+set relativenumber
+set number
 
 " Toggle Spellcheck
 map <F6> :setlocal spell! spelllang=en_us<CR>
@@ -87,14 +105,14 @@ set ai "auto indent
 set si "smart indent
 set wrap "wrap lines
 
-" Delete trailing white space on save
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-	 let old_query = getreg("/")
-	 silent! %s/\s\+$\\e
-	 call setpos('.', save_cursor)
-	 call setreg('/', old_query)
-endfun
+fun! <SID>StripTrailingWhitespaces()
+        let l = line(".")
+            let c = col(".")
+                %s/\s\+$//e
+                    call cursor(l, c)
+                endfun
+
+                autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 if has("autocmd")
     autocmd BufWritePre *.txt, *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
@@ -105,18 +123,6 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
-
-" alt-# to change tabs
-nnoremap <A-F1> 1gt
-nnoremap <A-F2> 2gt
-nnoremap <A-F3> 3gt
-nnoremap <A-F4> 4gt
-nnoremap <A-F5> 5gt
-nnoremap <A-F6> 6gt
-nnoremap <A-F7> 7gt
-nnoremap <A-F8> 8gt
-nnoremap <A-F9> 9gt
-nnoremap <A-F0> 10gt
 
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -134,6 +140,25 @@ autocmd FileType python nnoremap <leader>p o@property<Enter>def $name$(self):<En
 
 
 " Plugins
+
+" Flake8 autoformater
+let g:autopep8_disable_show_diff=1
+autocmd BufWritePost *.py call Autopep8()
+
+" visualdrag keys
+vmap <expr> <LEFT> DVB_Drag('left')
+vmap <expr> <RIGHT> DVB_Drag('right')
+vmap <expr> <DOWN> DVB_Drag('down')
+vmap <expr> <UP> DVB_Drag('up')
+vmap <expr> D DVB_Duplicate()
+
+let g:DVB_TrimWS = 1
+
+" only use emmet on correct file types
+let g:user_emmet_leader_key='<C-e>'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
