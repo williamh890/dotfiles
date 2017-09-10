@@ -156,6 +156,7 @@ alias call='git add . && git commit'
 alias untar='tar -xvzf'
 
 alias interface-env="source ~/VirtualEnv/time-series-interface/bin/activate"
+alias start-server="python2 -m SimpleHTTPServer"
 
 alias python=python3
 
