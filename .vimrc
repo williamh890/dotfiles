@@ -47,7 +47,7 @@ nnoremap ; :
 
 "nnoremap <silent> n n:call HLNext(0.4)<cr>
 "nnoremap <silent> N N:call HLNext(0.4)<cr>
-
+set so=7
 set nocp
 set autoindent
 " Always shows the current positions
