@@ -152,8 +152,10 @@ nnoremap <C-H> :tabprevious<CR>
 
 " Plugins
 
-
-
+" YouCompleteMe
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+set completeopt-=preview
 " Ale
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
