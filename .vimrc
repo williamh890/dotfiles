@@ -13,6 +13,7 @@ call vundle#begin()
 " " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'w0rp/ale'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'severin-lemaignan/vim-minimap'
@@ -26,7 +27,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'atweiden/vim-dragvisuals'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'tell-k/vim-autopep8'
+Plugin 'jiangmiao/auto-pairs'
 
+" Tab navigation like Firefox.
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -44,7 +47,7 @@ nnoremap ; :
 
 "nnoremap <silent> n n:call HLNext(0.4)<cr>
 "nnoremap <silent> N N:call HLNext(0.4)<cr>
-
+set so=7
 set nocp
 set autoindent
 " Always shows the current positions
@@ -73,10 +76,10 @@ set tm=500
 " https://github.com/rhysd/vim-color-spring-night
 syntax enable
 set t_Co=256
-set background=dark
-colorscheme spring-night
-highlight Normal ctermbg=NONE
-highlight nonText ctermbg=NONE
+set background=light
+colorscheme one 
+"highlight Normal ctermbg=NONE
+"highlight nonText ctermbg=NONE
 
 set ffs=unix,dos,mac
 
@@ -138,12 +141,30 @@ autocmd FileType python nnoremap <leader>m odef $name$(self):<Enter><++><Esc>?$n
 autocmd FileType python nnoremap <leader>f odef $name$():<Enter><++><Esc>?$name<Enter>ct(
 autocmd FileType python nnoremap <leader>p o@property<Enter>def $name$(self):<Enter><++><Esc>?$name<Enter>ct(
 
+for prefix in ['i', 'n', 'v']
+    for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+        exe prefix . "noremap " . key . " <Nop>"
+    endfor
+endfor
+
+nnoremap <C-L> :tabnext<CR> 
+nnoremap <C-H> :tabprevious<CR> 
 
 " Plugins
+
+" YouCompleteMe
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+set completeopt-=preview
+" Ale
+let g:airline#extensions#ale#enabled = 1
+let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
 
 " Flake8 autoformater
 let g:autopep8_disable_show_diff=1
 autocmd BufWritePost *.py call Autopep8()
+
 
 " visualdrag keys
 vmap <expr> <LEFT> DVB_Drag('left')
@@ -169,6 +190,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_root_markers = ['hyp3-time-series', 'hyp3-api']
+let g:ctrlp_working_path_mode = 'ra'
 
 " Minimap
 let g:minimap_show='<leader>ms'
@@ -178,6 +201,8 @@ let g:minimap_toggle='<leader>gt'
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme="base16"
 
 " Put these lines at the very end of your vimrc file.
 

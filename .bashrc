@@ -153,7 +153,7 @@ alias start-last-container='docker start  `docker ps -q -l` && docker attach `do
 alias safes='cd $HOME/granule_safes'
 alias call='git add . && git commit'
 
-alias untar='tar -xvzf'
+alias untar='tar -xvf'
 
 alias interface-env="source ~/VirtualEnv/time-series-interface/bin/activate"
 alias start-server="python2 -m SimpleHTTPServer"
