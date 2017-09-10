@@ -27,6 +27,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'atweiden/vim-dragvisuals'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'tell-k/vim-autopep8'
+Plugin 'jiangmiao/auto-pairs'
 
 " Tab navigation like Firefox.
 
@@ -146,8 +147,8 @@ for prefix in ['i', 'n', 'v']
     endfor
 endfor
 
-nnoremap <C-Right> :tabnext<CR> 
-nnoremap <C-Left> :tabprevious<CR> 
+nnoremap <C-L> :tabnext<CR> 
+nnoremap <C-H> :tabprevious<CR> 
 
 " Plugins
 
