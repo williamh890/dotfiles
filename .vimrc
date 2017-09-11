@@ -49,8 +49,6 @@ nnoremap ; :
 "nnoremap <silent> N N:call HLNext(0.4)<cr>
 set so=7
 set nocp
-set autoindent
-" Always shows the current positions
 set ruler
 
 " A buffer becomes hidden when it is abandoned

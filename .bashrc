@@ -158,7 +158,7 @@ alias untar='tar -xvf'
 alias interface-env="source ~/VirtualEnv/time-series-interface/bin/activate"
 
 alias python=python3
-
+alias start-server="python2 -m SimpleHTTPServer"
 alias prune="sudo docker system prune"
 
 alias large-files='sudo du -h / | grep -E "[0-9]G"'
