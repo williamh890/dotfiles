@@ -28,6 +28,8 @@ Plugin 'atweiden/vim-dragvisuals'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'valloric/MatchTagAlways'
+Plugin 'pangloss/vim-javascript'
 
 " Tab navigation like Firefox.
 
@@ -49,6 +51,8 @@ nnoremap ; :
 "nnoremap <silent> N N:call HLNext(0.4)<cr>
 set so=7
 set nocp
+set autoindent
+" Always shows the current positions
 set ruler
 
 " A buffer becomes hidden when it is abandoned
@@ -73,6 +77,7 @@ set tm=500
 
 " https://github.com/rhysd/vim-color-spring-night
 syntax enable
+set cursorline
 set t_Co=256
 set background=light
 colorscheme one 
@@ -98,6 +103,8 @@ set smarttab
 " 1 Tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
+
+au FileType html setl sw=2 sts=2 et
 
 set lbr
 set tw=500
@@ -145,10 +152,15 @@ for prefix in ['i', 'n', 'v']
     endfor
 endfor
 
-nnoremap <C-L> :tabnext<CR> 
-nnoremap <C-H> :tabprevious<CR> 
+nnoremap <C-l> :tabnext<CR> 
+nnoremap <C-h> :tabprevious<CR> 
+nnoremap <C-Left>  :-tabmove<cr>
+nnoremap <C-Right> :+tabmove<cr>
 
 " Plugins
+
+" MatchTagAlways
+let g:mta_use_matchparen_group = 1
 
 " YouCompleteMe
 let g:ycm_add_preview_to_completeopt = 0
