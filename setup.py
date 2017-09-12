@@ -41,7 +41,8 @@ def download_repos(username, repos_path):
 # Install youCompleteMe and all of its dependencies
 def ycm_setup():
     print("INSTALLING YOUCOMPLETEME DEPENDENCIES")
-    packages = ['build-essential', 'cmake', 'python-dev', 'python3-dev']
+    packages = ['build-essential', 'python-pip',
+                'cmake', 'python-dev', 'python3-dev']
 
     for p in packages:
         install_pkg = "sudo apt-get install {p} -y".format(p=p)
@@ -51,6 +52,7 @@ def ycm_setup():
             print(e)
             print("ERROR installing package {}".format(p))
 
+    system('sudo pip install --upgrade autopep8')
     # Run the ycm install script
     system("cd ~/.vim/bundle/YouCompleteMe  && ./install.py --clang-completer")
 
@@ -114,7 +116,7 @@ def install_chrome():
     cmds = [
         "sudo apt -y install libxss1 libappindicator1 libindicator7",
         "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
-        "sudo dpkg -i google-chrome*.deb"
+        "sudo dpkg -i google-chrome-stable_current_amd64.deb",
         "sudo apt-get install -f"
     ]
 
@@ -123,7 +125,7 @@ def install_chrome():
 
 
 def setup():
-    # install_chrome()
+    install_chrome()
     repos_path = expanduser("~/repositories")
 
     try:
