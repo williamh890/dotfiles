@@ -30,6 +30,7 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'valloric/MatchTagAlways'
 Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/nerdcommenter'
 
 " Tab navigation like Firefox.
 
@@ -40,6 +41,9 @@ set history=500
 set number
 set hlsearch
 
+autocmd InsertEnter * :let b:_search=@/|let @/=''
+autocmd InsertLeave * :let @/=get(b:,'_search','')
+
 " Warning when lines are longer then 80 characters.
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
@@ -49,7 +53,7 @@ nnoremap ; :
 
 "nnoremap <silent> n n:call HLNext(0.4)<cr>
 "nnoremap <silent> N N:call HLNext(0.4)<cr>
-set so=7
+set so=5
 set nocp
 set autoindent
 " Always shows the current positions
@@ -141,10 +145,10 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 inoremap j<Space> <Esc>/<++><Enter>"_d4li<Space>
 
-autocmd FileType python nnoremap <leader>c oclass $name$(object):<Enter>def __init__(self):<Enter><++><Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>m odef $name$(self):<Enter><++><Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>f odef $name$():<Enter><++><Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>p o@property<Enter>def $name$(self):<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mc oclass $name$(object):<Enter>def __init__(self):<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mm odef $name$(self):<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mf odef $name$():<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mp o@property<Enter>def $name$(self):<Enter><++><Esc>?$name<Enter>ct(
 
 for prefix in ['i', 'n', 'v']
     for key in ['<Up>', '<Down>', '<Left>', '<Right>']
@@ -158,6 +162,13 @@ nnoremap <C-Left>  :-tabmove<cr>
 nnoremap <C-Right> :+tabmove<cr>
 
 " Plugins
+
+
+" Nerd commentor
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1"
 
 " MatchTagAlways
 let g:mta_use_matchparen_group = 1
