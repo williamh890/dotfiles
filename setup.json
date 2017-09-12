@@ -1,4 +1,9 @@
 {
     "github_api_url": "https://api.github.com",
-    "github_username": "williamh890"
+    "github_username": "williamh890",
+    "scheme_repo_url": "https://github.com/rakr/vim-one.git",
+    "scheme_repo_name": "vim-one",
+    "scheme_name": "one.vim",
+
+    "font_reminder": "REMEMBER!!!! -> change font to 'Meslo LG S for Powerline regular,16pt'"
 }
