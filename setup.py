@@ -9,6 +9,7 @@ from sys import argv
 from shutil import copyfile
 import json
 import requests
+import tarfile
 
 # Load in settings from json file
 setup_file = "setup.json" if len(argv[1:]) == 0 else argv[1]
@@ -36,6 +37,28 @@ def download_repos(username, repos_path):
         path = join(repos_path, name)
 
         git_clone(git_url, path)
+
+
+def install_processing():
+    url = config['processing_url']
+    name = config['processing_name']
+    path = expanduser("~/Programs")
+    tar_path = join(path, "{name}.tgz".format(name=name))
+
+    try:
+        mkdirs(path)
+    except:
+        print("Programs dir already exists")
+
+    cmd = "curl -L {url} > {path}".format(url=url, path=tar_path)
+    print(cmd)
+    # system(cmd)
+
+    with tarfile.open(tar_path) as ptar:
+        ptar.extractall()
+
+    # Run the install script
+    system(join(path, name, "install.sh"))
 
 
 # Install youCompleteMe and all of its dependencies
@@ -143,4 +166,4 @@ def setup():
 
 
 if __name__ == "__main__":
-    setup()
+    install_processing()
