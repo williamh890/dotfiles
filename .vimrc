@@ -145,10 +145,12 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 inoremap j<Space> <Esc>/<++><Enter>"_d4li<Space>
 
-autocmd FileType python nnoremap <leader>mc oclass $name$(object):<Enter>def __init__(self):<Enter><++><Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>mm odef $name$(self):<Enter><++><Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>mf odef $name$():<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mm odef<Space>$name$(self):<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mf odef<Space>$name$():<Enter><++><Esc>?$name<Enter>ct(
 autocmd FileType python nnoremap <leader>mp o@property<Enter>def $name$(self):<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>ma o@abstractmethod<Enter>def $name$(self):<Enter>pass<Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mn oif<Space>__name__<Space>==<Space>"__main__":<Enter>pass<Esc>b
 
 for prefix in ['i', 'n', 'v']
     for key in ['<Up>', '<Down>', '<Left>', '<Right>']
