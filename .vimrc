@@ -48,9 +48,6 @@ autocmd InsertLeave * :let @/=get(b:,'_search','')
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
-" Easier commands
-nnoremap ; :
-
 "nnoremap <silent> n n:call HLNext(0.4)<cr>
 "nnoremap <silent> N N:call HLNext(0.4)<cr>
 set so=5
