@@ -147,6 +147,20 @@ def install_chrome():
         system(cmd)
 
 
+def setup_capslock():
+    cmds = [
+        "xmodmap - e 'keycode 9 = Caps_Lock NoSymbol Caps_Lock'",
+        "xmodmap - e 'keycode 66 = Escape NoSymbol Escape'",
+        "xmodmap -pke > ~/.xmodmap"
+    ]
+
+    for cmd in cmds:
+        system(cmd)
+
+    with open(expanduser("~/.xinitrc"), "w") as f:
+        f.write("xmodmap .xmodmap")
+
+
 def setup():
     install_chrome()
     repos_path = expanduser("~/repositories")
@@ -156,6 +170,7 @@ def setup():
     except Exception:
         print("repo path already exists")
 
+    setup_capslock()
     download_repos(config['github_username'], repos_path)
     move_dotfiles()
 
