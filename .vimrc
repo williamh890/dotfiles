@@ -133,13 +133,6 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
 
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-
 inoremap j<Space> <Esc>/<++><Enter>"_d4li<Space>
 
 autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter><++><Esc>?$name<Enter>ct(
@@ -157,8 +150,8 @@ endfor
 
 nnoremap <C-l> :tabnext<CR> 
 nnoremap <C-h> :tabprevious<CR> 
-nnoremap <C-Left>  :-tabmove<cr>
-nnoremap <C-Right> :+tabmove<cr>
+nnoremap <leader>h  :-tabmove<CR>
+nnoremap <leader>l :+tabmove<CR>
 
 " Plugins
 
