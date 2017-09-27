@@ -116,6 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export EDITOR='vim'
 # Switch caps lock and esc key for vim
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
@@ -133,41 +134,49 @@ export C_INCLUDE_PATH=/usr/include/gdal
 
 export SCONS_CONFIG_DIR=/home/william/isce_requirements
 
-alias tsp='cd $HOME/repositories/hyp3-time-series'
-alias tspl='cd $HOME/repositories/hyp3-time-series/Lambdas'
-alias tspc='cd $HOME/repositories/hyp3-time-series/Containers'
+DIR_CMD='pushd'
+TSP_REPO='~/repositories/hyp3-time-series'
 
-alias tspcb='cd $HOME/repositories/hyp3-time-series/Containers/Bundler'
-alias tspcgi='cd $HOME/repositories/hyp3-time-series/Containers/Giant'
-alias tspcga='cd $HOME/repositories/hyp3-time-series/Containers/Gamma'
-alias tspci='cd $HOME/repositories/hyp3-time-series/Containers/Isce'
-alias tspi='cd $HOME/repositories/hyp3-time-series/Interface'
+alias tsp='eval $DIR_CMD $TSP_REPO'
+alias tspl='eval $DIR_CMD $TSP_REPO/Lambdas'
+alias tspc='eval $DIR_CMD $TSP_REPO/Containers'
 
-alias api='cd $HOME/repositories/hyp3-api'
-alias apif='cd $HOME/repositories/hyp3-api/hyp3-flask'
-alias apia='cd $HOME/repositories/hyp3-api/hyp3-api'
+alias tspcb='eval $DIR_CMD $TSP_REPO/Containers/Bundler'
+alias tspcgi='eval $DIR_CMD $TSP_REPO/Containers/Giant'
+alias tspcga='eval $DIR_CMD $TSP_REPO/Containers/Gamma'
+alias tspci='eval $DIR_CMD $TSP_REPO/Containers/Isce'
+alias tspi='eval $DIR_CMD $TSP_REPO/Interface'
 
-alias terminator='python3 ~/repositories/hyp3-time-series-isce/Lambdas/Delegator/utils/terminator.py'
+API_REPO='$HOME/repositories/hyp3-api'
+alias api='eval $DIR_CMD $API_REPO'
+alias apif='eval $DIR_CMD $API_REPO/hyp3-flask'
+alias apia='eval $DIR_CMD $API_REPO/hyp3-api'
+
+alias terminator='python3 $TSP_REPO/Lambdas/Delegator/utils/terminator.py'
+
 alias empty-trash='sudo rm -rf /home/william/.local/share/Trash/files/*'
 alias start-last-container='docker start  `docker ps -q -l` && docker attach `docker ps -q -l`'
-alias safes='cd $HOME/granule_safes'
+alias safes='eval $DIR_CMD $HOME/time-series-data/granule_safes'
 alias call='git add . && git commit'
 
 alias untar='tar -xvf'
 
 alias interface-env="source ~/VirtualEnv/time-series-interface/bin/activate"
-alias start-server="python2 -m SimpleHTTPServer"
 
 alias python=python3
-alias start-server="python2 -m SimpleHTTPServer"
+
 alias prune="sudo docker system prune"
 
 alias large-files='sudo du -h / | grep -E "[0-9]G"'
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-function cdls {
+function cd {
     builtin cd "$@" && ls -F
+}
+
+function pushd {
+    builtin pushd "$@" && ls -F
 }
 
 export PATH="$HOME/.linuxbrew/bin:$PATH"
