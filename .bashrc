@@ -116,9 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Switch caps lock and esc key for vim
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-
 export PATH=~/.local/bin:$PATH
 alias eb-env="source ~/VirtualEnv/eb_cli_env/bin/activate"
 
