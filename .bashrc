@@ -117,8 +117,6 @@ if ! shopt -oq posix; then
 fi
 
 export EDITOR='vim'
-# Switch caps lock and esc key for vim
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
 export PATH=~/.local/bin:$PATH
 alias eb-env="source ~/VirtualEnv/eb_cli_env/bin/activate"
@@ -136,6 +134,10 @@ export SCONS_CONFIG_DIR=/home/william/isce_requirements
 
 DIR_CMD='pushd'
 TSP_REPO='~/repositories/hyp3-time-series'
+FALL_CLASSES='~/repositories/classes/fall-2017'
+
+
+alias fall-classes='eval $DIR_CMD $FALL_CLASSES'
 
 alias tsp='eval $DIR_CMD $TSP_REPO'
 alias tspl='eval $DIR_CMD $TSP_REPO/Lambdas'
