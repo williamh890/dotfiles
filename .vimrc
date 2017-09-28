@@ -101,6 +101,11 @@ map <F6> :setlocal spell! spelllang=en_us<CR>
 set expandtab
 set smarttab
 
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+"
 " 1 Tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
@@ -127,6 +132,11 @@ if has("autocmd")
     autocmd BufWritePre *.txt, *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
 endif 
 
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+
 " remap keys to change windows
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
@@ -140,7 +150,6 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-inoremap j<Space> <Esc>/<++><Enter>"_d4li<Space>
 
 autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter><++><Esc>?$name<Enter>ct(
 autocmd FileType python nnoremap <leader>mm odef<Space>$name$(self):<Enter><++><Esc>?$name<Enter>ct(
@@ -157,17 +166,11 @@ endfor
 
 nnoremap <C-l> :tabnext<CR> 
 nnoremap <C-h> :tabprevious<CR> 
-nnoremap <C-Left>  :-tabmove<cr>
-nnoremap <C-Right> :+tabmove<cr>
+nnoremap <leader>h  :-tabmove<cr>
+nnoremap <leader>l :+tabmove<cr>
+
 
 " Plugins
-
-
-" Nerd commentor
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-let g:NERDCommentEmptyLines = 1
-let g:NERDTrimTrailingWhitespace = 1"
 
 " MatchTagAlways
 let g:mta_use_matchparen_group = 1
@@ -176,10 +179,15 @@ let g:mta_use_matchparen_group = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 set completeopt-=preview
+"
 " Ale
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " Flake8 autoformater
 let g:autopep8_disable_show_diff=1
@@ -200,11 +208,13 @@ let g:user_emmet_leader_key='<C-e>'
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
+" NerdCommentor
+let g:NERDDefaultAlign = 'left'
+
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 
 " Ctr-p options
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -213,11 +223,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_root_markers = ['hyp3-time-series', 'hyp3-api']
 let g:ctrlp_working_path_mode = 'ra'
 
-" Minimap
-let g:minimap_show='<leader>ms'
-let g:minimap_update='<leader>mu'
-let g:minimap_close='<leader>gc'
-let g:minimap_toggle='<leader>gt'
+nnoremap <leader>t :CtrlPTag<cr>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1

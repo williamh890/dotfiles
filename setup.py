@@ -47,7 +47,7 @@ def install_processing():
 
     try:
         mkdirs(path)
-    except:
+    except Exception:
         print("Programs dir already exists")
 
     cmd = "curl -L {url} > {path}".format(url=url, path=tar_path)
@@ -110,8 +110,26 @@ def powerline_fonts():
     system('rm -rf fonts')
 
 
+def install_vim8():
+    print("INSTALLING VIM8")
+
+    cmds = [
+        'sudo add-apt-repository ppa:jonathonf/vim',
+        'sudo apt update',
+        'sudo apt install vim'
+    ]
+
+    for cmd in cmds:
+        print(cmd)
+        system(cmd)
+
+
 def setup_vim():
     print("SETTING UP VIM")
+
+    install_vim8()
+
+    # installing vundle
     git_clone("https://github.com/VundleVim/Vundle.vim.git",
               expanduser("~/.vim/bundle/Vundle.vim"))
 
@@ -126,13 +144,13 @@ def setup_vim():
     powerline_fonts()
 
 
-def move_dotfiles():
+def link_dotfiles():
     dotfiles_path = expanduser('~/repositories/dotfiles/')
 
     # Copy dotfiles into home directory
-    for dotfile in ['.bashrc', '.vimrc']:
+    for dotfile in ['.bashrc', '.vimrc', '.tmux.conf']:
         path = join(dotfiles_path, dotfile)
-        system("cp {} ~".format(path))
+        system("ln {} ~".format(path))
 
 
 def install_chrome():
@@ -172,7 +190,7 @@ def setup():
 
     setup_capslock()
     download_repos(config['github_username'], repos_path)
-    move_dotfiles()
+    link_dotfiles()
 
     setup_vim()
 
@@ -181,4 +199,4 @@ def setup():
 
 
 if __name__ == "__main__":
-    install_processing()
+    setup_vim()
