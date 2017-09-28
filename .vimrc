@@ -143,6 +143,7 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
 
+<<<<<<< HEAD
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
@@ -150,11 +151,12 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:a<Space>
 
-autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter><++><Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>mm odef<Space>$name$(self):<Enter><++><Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>mf odef<Space>$name$():<Enter><++><Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>mp o@property<Enter>def $name$(self):<Enter><++><Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter>pass<Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mm odef<Space>$name$(self):<Enter>pass<Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mf odef<Space>$name$():<Enter>pass<Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mp o@property<Enter>def $name$(self):<Enter>pass<Esc>?$name<Enter>ct(
 autocmd FileType python nnoremap <leader>ma o@abstractmethod<Enter>def $name$(self):<Enter>pass<Esc>?$name<Enter>ct(
 autocmd FileType python nnoremap <leader>mn oif<Space>__name__<Space>==<Space>"__main__":<Enter>pass<Esc>b
 
@@ -166,8 +168,8 @@ endfor
 
 nnoremap <C-l> :tabnext<CR> 
 nnoremap <C-h> :tabprevious<CR> 
-nnoremap <leader>h  :-tabmove<cr>
-nnoremap <leader>l :+tabmove<cr>
+nnoremap <leader>h  :-tabmove<CR>
+nnoremap <leader>l :+tabmove<CR>
 
 
 " Plugins
