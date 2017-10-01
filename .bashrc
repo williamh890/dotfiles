@@ -155,6 +155,7 @@ alias apif='eval $DIR_CMD $API_REPO/hyp3-flask'
 alias apia='eval $DIR_CMD $API_REPO/hyp3-api'
 
 alias terminator='python3 $TSP_REPO/Lambdas/Delegator/utils/terminator.py'
+alias catch='curl -L https://github.com/philsquared/Catch/releases/download/v1.10.0/catch.hpp > catch.hpp'
 
 alias empty-trash='sudo rm -rf /home/william/.local/share/Trash/files/*'
 alias start-last-container='docker start  `docker ps -q -l` && docker attach `docker ps -q -l`'
