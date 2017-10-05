@@ -31,6 +31,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'valloric/MatchTagAlways'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'alvan/vim-closetag'
 
 " Tab navigation like Firefox.
 
@@ -201,6 +202,26 @@ let g:DVB_TrimWS = 1
 let g:user_emmet_leader_key='<C-e>'
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" Then after you press <kbd>&gt;</kbd> in these files, this plugin will try to close the current tag.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non closing tags self closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" integer value [0|1]
+" This will make the list of non closing tags case sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
 
 " NerdCommentor
 let g:NERDDefaultAlign = 'left'

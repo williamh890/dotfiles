@@ -116,7 +116,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export VISUAL=vim
 export EDITOR='vim'
+
 
 export PATH=~/.local/bin:$PATH
 alias eb-env="source ~/VirtualEnv/eb_cli_env/bin/activate"
