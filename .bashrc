@@ -138,6 +138,8 @@ DIR_CMD='pushd'
 TSP_REPO='~/repositories/hyp3-time-series'
 FALL_CLASSES='~/repositories/classes/fall-2017'
 
+alias c="xclip"
+alias v="xclip -o"
 
 alias fall-classes='eval $DIR_CMD $FALL_CLASSES'
 

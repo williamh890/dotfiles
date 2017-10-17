@@ -166,9 +166,8 @@ def install_chrome():
 
 def setup_capslock():
     cmds = [
-        "xmodmap -e 'keycode 9 = Caps_Lock NoSymbol Caps_Lock'",
-        "xmodmap -e 'keycode 66 = Escape NoSymbol Escape'",
-        "xmodmap -pke > ~/.xmodmap"
+        'dconf write /org/gnome/desktop/input-sources/xkb-options '
+        '"[\'caps:escape\']"'
     ]
 
     for cmd in cmds:
@@ -199,4 +198,4 @@ def setup():
 
 
 if __name__ == "__main__":
-    setup_vim()
+    setup_capslock()
