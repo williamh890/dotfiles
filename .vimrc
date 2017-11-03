@@ -4,6 +4,8 @@ let g:mapleader = ","
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set encoding=utf-8
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -33,10 +35,10 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'alvan/vim-closetag'
 
-" Tab navigation like Firefox.
-
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+runtime macros/matchit.vim
 
 set history=500
 set number
