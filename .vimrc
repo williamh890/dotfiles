@@ -32,6 +32,7 @@ Plugin 'valloric/MatchTagAlways'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'alvan/vim-closetag'
+Plugin 'ap/vim-css-color'
 
 " Tab navigation like Firefox.
 
