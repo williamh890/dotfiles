@@ -32,8 +32,8 @@ Plugin 'valloric/MatchTagAlways'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'alvan/vim-closetag'
+Plugin 'leafgarland/typescript-vim'
 
-" Tab navigation like Firefox.
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -44,6 +44,8 @@ set hlsearch
 
 autocmd InsertEnter * :let b:_search=@/|let @/=''
 autocmd InsertLeave * :let @/=get(b:,'_search','')
+
+set autochdir
 
 " Warning when lines are longer then 80 characters.
 highlight ColorColumn ctermbg=magenta
@@ -82,7 +84,7 @@ syntax enable
 set cursorline
 set t_Co=256
 set background=light
-colorscheme one 
+colorscheme one
 "highlight Normal ctermbg=NONE
 "highlight nonText ctermbg=NONE
 
@@ -121,19 +123,21 @@ set si "smart indent
 set wrap "wrap lines
 
 fun! <SID>StripTrailingWhitespaces()
-        let l = line(".")
-            let c = col(".")
-                %s/\s\+$//e
-                    call cursor(l, c)
-                endfun
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
 
-                autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-if has("autocmd")
-    autocmd BufWritePre *.txt, *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
-endif 
+" Using file extension
+autocmd BufWritePre *.h,*.c,*.java :call <SID>StripTrailingWhitespaces()
 
-au BufNewFile,BufRead *.js, *.html, *.css
+" Often files are not necessarily identified by extension, if so use e.g.:
+autocmd BufWritePre * if &ft =~ 'sh\|perl\|python' | :call <SID>StripTrailingWhitespaces() | endif
+
+au BufNewFile,BufRead *.js, *.ts,  *.html, *.css
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
@@ -160,11 +164,10 @@ for prefix in ['i', 'n', 'v']
     endfor
 endfor
 
-nnoremap <C-l> :tabnext<CR> 
-nnoremap <C-h> :tabprevious<CR> 
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
 nnoremap <leader>h  :-tabmove<CR>
 nnoremap <leader>l :+tabmove<CR>
-
 
 " Plugins
 
@@ -236,8 +239,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_root_markers = ['hyp3-time-series', 'hyp3-api']
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 nnoremap <leader>t :CtrlPTag<cr>
 
