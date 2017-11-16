@@ -33,6 +33,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'alvan/vim-closetag'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'ap/vim-css-color'
 
 
 call vundle#end()            " required
