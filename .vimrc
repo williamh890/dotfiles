@@ -133,7 +133,7 @@ fun! <SID>StripTrailingWhitespaces()
                 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 if has("autocmd")
-    autocmd BufWritePre *.txt, *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
+    autocmd BufWritePre *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
 endif 
 
 au BufNewFile,BufRead *.js, *.html, *.css
@@ -165,15 +165,21 @@ endfor
 
 nnoremap <C-l> :tabnext<CR> 
 nnoremap <C-h> :tabprevious<CR> 
+
 nnoremap <leader>h  :-tabmove<CR>
 nnoremap <leader>l :+tabmove<CR>
 
 nnoremap <leader>w :w<Enter>
+nnoremap <leader>q :wq<Enter>
+nnoremap <leader>c :wall<Enter>:tabonly<Enter>:tabnew<Enter>gT:wq<Enter>
+nnoremap <leader>z :wall<Enter>:qall<Enter>
+
 nnoremap <leader>r :noh<Enter>
 
 vnoremap <leader>y "+y
 nnoremap <leader>v "+p
 
+nnoremap <leader><Space> o<Esc>k
 " Plugins
 
 " MatchTagAlways
@@ -230,20 +236,17 @@ let g:closetag_emptyTags_caseSensitive = 1
 "
 let g:closetag_shortcut = '>'
 
-
 " NerdCommentor
 let g:NERDDefaultAlign = 'left'
 
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Ctr-p options
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_root_markers = ['hyp3-time-series', 'hyp3-api']
 let g:ctrlp_working_path_mode = 'ra'
 
 nnoremap <leader>t :CtrlPTag<cr>
