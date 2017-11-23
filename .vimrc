@@ -171,7 +171,8 @@ nnoremap <leader>l :+tabmove<CR>
 
 nnoremap <leader>w :w<Enter>
 nnoremap <leader>q :wq<Enter>
-nnoremap <leader>c :wall<Enter>:tabonly<Enter>:tabnew<Enter>gT:wq<Enter>
+nnoremap <leader>Q :q<Enter>
+nnoremap <leader>ct :wall<Enter>:tabonly<Enter>:tabnew<Enter>gT:wq<Enter>
 nnoremap <leader>z :wall<Enter>:qall<Enter>
 
 nnoremap <leader>r :noh<Enter>
