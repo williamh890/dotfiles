@@ -11,7 +11,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " " alternatively, pass a path where Vundle should install plugins
 " "call vundle#begin('~/some/path/here')
-"
+
 " " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
@@ -168,6 +168,11 @@ nnoremap <C-h> :tabprevious<CR>
 nnoremap <leader>h  :-tabmove<CR>
 nnoremap <leader>l :+tabmove<CR>
 
+nnoremap <leader>w :w<Enter>
+nnoremap <leader>r :noh<Enter>
+
+vnoremap <leader>y "+y
+nnoremap <leader>v "+p
 
 " Plugins
 
@@ -191,7 +196,6 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " Flake8 autoformater
 let g:autopep8_disable_show_diff=1
 autocmd BufWritePost *.py call Autopep8()
-
 
 " visualdrag keys
 vmap <expr> <LEFT> DVB_Drag('left')
