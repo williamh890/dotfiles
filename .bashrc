@@ -138,10 +138,14 @@ DIR_CMD='pushd'
 TSP_REPO='~/repositories/hyp3-time-series'
 FALL_CLASSES='~/repositories/classes/fall-2017'
 
-alias c="xclip"
-alias v="xclip -o"
+alias weka='java -jar ~/Programs/weka-3-8-1/weka.jar'
 
 alias fall-classes='eval $DIR_CMD $FALL_CLASSES'
+alias mining='eval $DIR_CMD $FALL_CLASSES/mining'
+alias stats='eval $DIR_CMD $FALL_CLASSES/stats'
+alias algos='eval $DIR_CMD $FALL_CLASSES/algos'
+alias graphics='eval $DIR_CMD $FALL_CLASSES/graphics'
+alias ethics='eval $DIR_CMD $FALL_CLASSES/ethics'
 
 alias tsp='eval $DIR_CMD $TSP_REPO'
 alias tspl='eval $DIR_CMD $TSP_REPO/Lambdas'
@@ -174,6 +178,7 @@ alias python=python3
 alias start-server='python2 -m SimpleHTTPServer'
 
 alias prune="sudo docker system prune"
+alias x="xdg-open"
 
 alias large-files='sudo du -h / | grep -E "[0-9]G"'
 BASE16_SHELL=$HOME/.config/base16-shell/

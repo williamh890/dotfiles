@@ -35,6 +35,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'alvan/vim-closetag'
 Plugin 'ap/vim-css-color'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -85,7 +87,7 @@ syntax enable
 set cursorline
 set t_Co=256
 set background=light
-colorscheme one 
+colorscheme one
 "highlight Normal ctermbg=NONE
 "highlight nonText ctermbg=NONE
 
@@ -132,14 +134,9 @@ fun! <SID>StripTrailingWhitespaces()
 
                 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-if has("autocmd")
-    autocmd BufWritePre *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
-endif 
-
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+"if has("autocmd")
+    "autocmd BufWritePre *.js, *.py, *.wiki, *.sh, *.coffee :call CleanExtraSpaces()
+"endif
 
 " remap keys to change windows
 nnoremap <C-J> <C-W>j
@@ -163,8 +160,8 @@ for prefix in ['i', 'n', 'v']
     endfor
 endfor
 
-nnoremap <C-l> :tabnext<CR> 
-nnoremap <C-h> :tabprevious<CR> 
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
 
 nnoremap <leader>h  :-tabmove<CR>
 nnoremap <leader>l :+tabmove<CR>
@@ -256,6 +253,11 @@ nnoremap <leader>t :CtrlPTag<cr>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme="base16"
+
+let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh,*.vert,*.tesc,*.tese,*.geom,*.frag,*.comp'
+
+highlight ExtraWhitespace ctermbg=253
+autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " Put these lines at the very end of your vimrc file.
 
