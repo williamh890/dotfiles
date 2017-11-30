@@ -119,7 +119,6 @@ fi
 export VISUAL=vim
 export EDITOR='vim'
 
-
 export PATH=~/.local/bin:$PATH
 alias eb-env="source ~/VirtualEnv/eb_cli_env/bin/activate"
 
@@ -175,7 +174,9 @@ alias untar='tar -xvf'
 alias interface-env="source ~/VirtualEnv/time-series-interface/bin/activate"
 
 alias python=python3
-alias start-server='python2 -m SimpleHTTPServer'
+alias start-server='python3 -m http.server'
+
+alias snipper-tool='shutter'
 
 alias prune="sudo docker system prune"
 alias x="xdg-open"
