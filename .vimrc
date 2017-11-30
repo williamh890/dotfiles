@@ -37,11 +37,39 @@ Plugin 'alvan/vim-closetag'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'ap/vim-css-color'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 runtime macros/matchit.vim
+
+
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
+
+nnoremap <leader>h  :-tabmove<CR>
+nnoremap <leader>l :+tabmove<CR>
+
+" Saving
+nnoremap <leader>w :w<Enter>
+nnoremap <leader>q :wq<Enter>
+nnoremap <leader>Q :q<Enter>
+nnoremap <leader>ct :wall<Enter>:tabonly<Enter>:tabnew<Enter>gT:wq<Enter>
+nnoremap <leader>z :wall<Enter>:qall<Enter>
+
+nnoremap <leader>r :noh<Enter>
+
+vnoremap <leader>y "+y
+nnoremap <leader>v "+p
+
+nnoremap <leader><Space> o<Esc>k
+
+" remap keys to change windows
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
 
 set history=500
 set number
@@ -53,7 +81,7 @@ autocmd InsertLeave * :let @/=get(b:,'_search','')
 set autochdir
 
 " Warning when lines are longer then 80 characters.
-highlight ColorColumn ctermbg=magenta
+highlight ColorColumn ctermbg=253
 call matchadd('ColorColumn', '\%81v', 100)
 
 "nnoremap <silent> n n:call HLNext(0.4)<cr>
@@ -127,21 +155,10 @@ set ai "auto indent
 set si "smart indent
 set wrap "wrap lines
 
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
-" remap keys to change windows
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-H> <C-W>h
-nnoremap <C-L> <C-W>l
 
 autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:a<Space>
 
+" Python snippets
 autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter>pass<Esc>?$name<Enter>ct(
 autocmd FileType python nnoremap <leader>mm odef<Space>$name$(self):<Enter>pass<Esc>?$name<Enter>ct(
 autocmd FileType python nnoremap <leader>mf odef<Space>$name$():<Enter>pass<Esc>?$name<Enter>ct(
@@ -156,24 +173,6 @@ for prefix in ['i', 'n', 'v']
     endfor
 endfor
 
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-h> :tabprevious<CR>
-
-nnoremap <leader>h  :-tabmove<CR>
-nnoremap <leader>l :+tabmove<CR>
-
-nnoremap <leader>w :w<Enter>
-nnoremap <leader>q :wq<Enter>
-nnoremap <leader>Q :q<Enter>
-nnoremap <leader>ct :wall<Enter>:tabonly<Enter>:tabnew<Enter>gT:wq<Enter>
-nnoremap <leader>z :wall<Enter>:qall<Enter>
-
-nnoremap <leader>r :noh<Enter>
-
-vnoremap <leader>y "+y
-nnoremap <leader>v "+p
-
-nnoremap <leader><Space> o<Esc>k
 " Plugins
 
 " MatchTagAlways
@@ -251,7 +250,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme="base16"
 
+" glsl syntax
+let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh,*.vert,*.tesc,*.tese,*.geom,*.frag,*.comp'
+
 " Whitespace plugin
+highlight ExtraWhitespace ctermbg=253
 autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " Put these lines at the very end of your vimrc file.
