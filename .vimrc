@@ -4,12 +4,14 @@ let g:mapleader = ","
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set encoding=utf-8
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " " alternatively, pass a path where Vundle should install plugins
 " "call vundle#begin('~/some/path/here')
-"
+
 " " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
@@ -34,10 +36,12 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'alvan/vim-closetag'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'ap/vim-css-color'
-
+Plugin 'ntpeters/vim-better-whitespace'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+runtime macros/matchit.vim
 
 set history=500
 set number
@@ -130,19 +134,6 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
-" Using file extension
-autocmd BufWritePre *.h,*.c,*.java :call <SID>StripTrailingWhitespaces()
-
-" Often files are not necessarily identified by extension, if so use e.g.:
-autocmd BufWritePre * if &ft =~ 'sh\|perl\|python' | :call <SID>StripTrailingWhitespaces() | endif
-
-au BufNewFile,BufRead *.js, *.ts,  *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-
 " remap keys to change windows
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
@@ -167,9 +158,22 @@ endfor
 
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
+
 nnoremap <leader>h  :-tabmove<CR>
 nnoremap <leader>l :+tabmove<CR>
 
+nnoremap <leader>w :w<Enter>
+nnoremap <leader>q :wq<Enter>
+nnoremap <leader>Q :q<Enter>
+nnoremap <leader>ct :wall<Enter>:tabonly<Enter>:tabnew<Enter>gT:wq<Enter>
+nnoremap <leader>z :wall<Enter>:qall<Enter>
+
+nnoremap <leader>r :noh<Enter>
+
+vnoremap <leader>y "+y
+nnoremap <leader>v "+p
+
+nnoremap <leader><Space> o<Esc>k
 " Plugins
 
 " MatchTagAlways
@@ -192,7 +196,6 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " Flake8 autoformater
 let g:autopep8_disable_show_diff=1
 autocmd BufWritePost *.py call Autopep8()
-
 
 " visualdrag keys
 vmap <expr> <LEFT> DVB_Drag('left')
@@ -227,14 +230,12 @@ let g:closetag_emptyTags_caseSensitive = 1
 "
 let g:closetag_shortcut = '>'
 
-
 " NerdCommentor
 let g:NERDDefaultAlign = 'left'
 
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Ctr-p options
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -249,6 +250,9 @@ nnoremap <leader>t :CtrlPTag<cr>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme="base16"
+
+" Whitespace plugin
+autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " Put these lines at the very end of your vimrc file.
 
