@@ -174,7 +174,7 @@ alias untar='tar -xvf'
 alias interface-env="source ~/VirtualEnv/time-series-interface/bin/activate"
 
 alias python=python3
-alias start-server='python3 -m http.server'
+alias pserver='python3 -m http.server'
 
 alias snipper-tool='shutter'
 
