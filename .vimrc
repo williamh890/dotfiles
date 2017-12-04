@@ -65,12 +65,6 @@ nnoremap <leader>v "+p
 
 nnoremap <leader><Space> o<Esc>k
 
-" remap keys to change windows
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-H> <C-W>h
-nnoremap <C-L> <C-W>l
-
 set history=500
 set number
 set hlsearch
