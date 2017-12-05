@@ -150,6 +150,8 @@ alias tsp='eval $DIR_CMD $TSP_REPO'
 alias tspl='eval $DIR_CMD $TSP_REPO/Lambdas'
 alias tspc='eval $DIR_CMD $TSP_REPO/Containers'
 
+alias water-monitor='python ~/Programs/water-monitor/monitor.py'
+
 alias tspcb='eval $DIR_CMD $TSP_REPO/Containers/Bundler'
 alias tspcgi='eval $DIR_CMD $TSP_REPO/Containers/Giant'
 alias tspcga='eval $DIR_CMD $TSP_REPO/Containers/Gamma'
