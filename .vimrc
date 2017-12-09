@@ -243,6 +243,7 @@ nnoremap <leader>t :CtrlPTag<cr>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme="base16"
+let g:airline#extensions#tabline#show_buffers = 0
 
 " glsl syntax
 let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh,*.vert,*.tesc,*.tese,*.geom,*.frag,*.comp'
