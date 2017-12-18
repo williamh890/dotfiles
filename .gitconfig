@@ -1,0 +1,9 @@
+[user]
+	email = wbhorn@alaska.edu
+	name = William Horn
+[default]
+	editor = vim
+[core]
+	editor = vim
+[alias]
+	s = status
