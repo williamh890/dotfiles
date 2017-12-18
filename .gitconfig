@@ -7,3 +7,11 @@
 	editor = vim
 [alias]
 	s = status
+    plog = log --oneline --graph
+    pl = log --oneline --graph
+    ca = !git add --all && git commit
+    b = branch
+    co = checkout
+    r = reset
+    plom = pull origin master
+    psom = push origin master
