@@ -59,6 +59,7 @@ filetype plugin indent on    " required
 
 runtime macros/matchit.vim
 
+" Key Bindings
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 
@@ -85,6 +86,7 @@ nnoremap <leader>v "+p
 
 nnoremap <leader><Space> o<Esc>k
 
+" Vim Settings
 set history=500
 set number
 set hlsearch
