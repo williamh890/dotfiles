@@ -1,5 +1,4 @@
 let mapleader = ","
-
 let g:mapleader = ","
 
 set nocompatible              " be iMproved, required
@@ -45,6 +44,7 @@ Plugin 'ap/vim-css-color'
 
 " JS/TS
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'Galooshi/vim-import-js'
 Plugin 'leafgarland/typescript-vim'
 
@@ -224,21 +224,17 @@ autocmd FileType html,css EmmetInstall
 
 " filenames like *.xml, *.html, *.xhtml, ...
 " Then after you press <kbd>&gt;</kbd> in these files, this plugin will try to close the current tag.
-"
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 
 " filenames like *.xml, *.xhtml, ...
 " This will make the list of non closing tags self closing in the specified files.
-"
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
 
 " integer value [0|1]
 " This will make the list of non closing tags case sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-"
 let g:closetag_emptyTags_caseSensitive = 1
 
 " Shortcut for closing tags, default is '>'
-"
 let g:closetag_shortcut = '>'
 
 " Ctr-p options
@@ -263,6 +259,8 @@ nnoremap <leader>gc :Gcommit<CR>
 
 " glsl syntax
 let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh,*.vert,*.tesc,*.tese,*.geom,*.frag,*.comp'
+
+let g:jsx_ext_required = 0
 
 " Whitespace plugin
 highlight ExtraWhitespace ctermbg=253
