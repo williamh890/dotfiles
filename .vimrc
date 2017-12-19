@@ -60,17 +60,21 @@ filetype plugin indent on    " required
 runtime macros/matchit.vim
 
 " Key Bindings
+
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 
-" Moving tabs
+nnoremap <C-k> :bnext<CR>
+nnoremap <C-j> :bprevious<CR>
+
+" Moving tab order
 nnoremap <leader>h  :-tabmove<CR>
 nnoremap <leader>l :+tabmove<CR>
 
-nnoremap <C-c>h :wincmd h<CR>
-nnoremap <C-c>l :wincmd l<CR>
-nnoremap <C-c>k :wincmd k<CR>
-nnoremap <C-c>j :wincmd j<CR>
+nnoremap <C-x>h :wincmd h<CR>
+nnoremap <C-x>l :wincmd l<CR>
+nnoremap <C-x>k :wincmd k<CR>
+nnoremap <C-x>j :wincmd j<CR>
 
 " Saving
 nnoremap <leader>w :w<Enter>
