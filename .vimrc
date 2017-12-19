@@ -241,12 +241,6 @@ let g:closetag_emptyTags_caseSensitive = 1
 "
 let g:closetag_shortcut = '>'
 
-" NerdCommentor
-let g:NERDDefaultAlign = 'left'
-
-" NerdTree
-map <C-n> :NERDTreeToggle<CR>
-
 " Ctr-p options
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
@@ -262,6 +256,10 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme="base16"
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Fugitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
 
 " glsl syntax
 let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh,*.vert,*.tesc,*.tese,*.geom,*.frag,*.comp'
