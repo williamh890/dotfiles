@@ -223,9 +223,17 @@ vmap <expr> D DVB_Duplicate()
 let g:DVB_TrimWS = 1
 
 " only use emmet on correct file types
-let g:user_emmet_leader_key='<C-e>'
+let g:user_emmet_leader_key='e'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
+
+autocmd FileType html,css,javascript,javascript.jsx EmmetInstall
+
 
 " filenames like *.xml, *.html, *.xhtml, ...
 " Then after you press <kbd>&gt;</kbd> in these files, this plugin will try to close the current tag.
@@ -261,6 +269,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Fugitive
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
+
+let g:closetag_filenames = '*.html,*.js,*.jsx'
 
 " glsl syntax
 let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh,*.vert,*.tesc,*.tese,*.geom,*.frag,*.comp'
