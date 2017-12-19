@@ -238,7 +238,6 @@ let g:closetag_shortcut = '>'
 " NerdCommentor
 let g:NERDDefaultAlign = 'left'
 
-
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
 
