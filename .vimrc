@@ -185,7 +185,12 @@ for prefix in ['i', 'n', 'v']
     endfor
 endfor
 
-" Plugins
+" Plugin
+
+" Ale
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 " MatchTagAlways
 let g:mta_use_matchparen_group = 1
