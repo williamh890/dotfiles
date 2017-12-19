@@ -14,40 +14,54 @@ call vundle#begin()
 
 " " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
+
+" Core Plugins
 Plugin 'w0rp/ale'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'severin-lemaignan/vim-minimap'
+
+" Quality of Life
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
+
+" GUI Improvements
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'mkitt/tabline.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'atweiden/vim-dragvisuals'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'tell-k/vim-autopep8'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'valloric/MatchTagAlways'
-Plugin 'pangloss/vim-javascript'
-Plugin 'scrooloose/nerdcommenter'
+
+" HTML
+Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
-Plugin 'leafgarland/typescript-vim'
+Plugin 'valloric/MatchTagAlways'
+
+" CSS
 Plugin 'ap/vim-css-color'
-Plugin 'ntpeters/vim-better-whitespace'
+
+" JS/TS
+Plugin 'pangloss/vim-javascript'
+Plugin 'Galooshi/vim-import-js'
+Plugin 'leafgarland/typescript-vim'
+
+" GLSL
 Plugin 'tikhomirov/vim-glsl'
+
+"Python
+Plugin 'tell-k/vim-autopep8'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 runtime macros/matchit.vim
 
-
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 
+" Moving tabs
 nnoremap <leader>h  :-tabmove<CR>
 nnoremap <leader>l :+tabmove<CR>
 
@@ -78,8 +92,6 @@ set autochdir
 highlight ColorColumn ctermbg=253
 call matchadd('ColorColumn', '\%81v', 100)
 
-"nnoremap <silent> n n:call HLNext(0.4)<cr>
-"nnoremap <silent> N N:call HLNext(0.4)<cr>
 set so=5
 set nocp
 set autoindent
