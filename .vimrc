@@ -1,4 +1,5 @@
 let mapleader = ","
+
 let g:mapleader = ","
 
 set nocompatible              " be iMproved, required
@@ -64,6 +65,11 @@ nnoremap <C-h> :tabprevious<CR>
 " Moving tabs
 nnoremap <leader>h  :-tabmove<CR>
 nnoremap <leader>l :+tabmove<CR>
+
+nnoremap <C-c>h :wincmd h<CR>
+nnoremap <C-c>l :wincmd l<CR>
+nnoremap <C-c>k :wincmd k<CR>
+nnoremap <C-c>j :wincmd j<CR>
 
 " Saving
 nnoremap <leader>w :w<Enter>
