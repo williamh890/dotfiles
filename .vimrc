@@ -47,6 +47,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'Galooshi/vim-import-js'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/vim-js-pretty-template'
 
 " GLSL
 Plugin 'tikhomirov/vim-glsl'
@@ -185,6 +186,11 @@ autocmd FileType python nnoremap <leader>ma o@abstractmethod<Enter>def $name$(se
 autocmd FileType python nnoremap <leader>mn oif<Space>__name__<Space>==<Space>"__main__":<Enter>pass<Esc>b
 autocmd FileType python nnoremap <leader>s. iself.<Esc>
 
+autocmd FileType javascript nnoremap <leader>im oimport<Space>{}<Space>from<Space>'';<Esc>F{a<Space><Space><Esc>i
+autocmd FileType javascript nnoremap <leader>ia oimport<Space>*<Space>as<Space>from<Space>'';<Esc>Fsa<Space>
+autocmd FileType typescript nnoremap <leader>im oimport<Space>{}<Space>from<Space>'';<Esc>F{a<Space><Space><Esc>i
+autocmd FileType typescript nnoremap <leader>ia oimport<Space>*<Space>as<Space>from<Space>'';<Esc>Fsa<Space>
+
 for prefix in ['i', 'n', 'v']
     for key in ['<Up>', '<Down>', '<Left>', '<Right>']
         exe prefix . "noremap " . key . " <Nop>"
@@ -240,6 +246,8 @@ let g:user_emmet_settings = {
 
 autocmd FileType html,css,javascript,javascript.jsx EmmetInstall
 
+autocmd FileType javascript JsPreTmpl html
+autocmd FileType typescript JsPreTmpl markdown
 
 " filenames like *.xml, *.html, *.xhtml, ...
 " Then after you press <kbd>&gt;</kbd> in these files, this plugin will try to close the current tag.
