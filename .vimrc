@@ -173,12 +173,8 @@ set ai "auto indent
 set si "smart indent
 set wrap "wrap lines
 
-<<<<<<< HEAD
-autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:a<Space>
-=======
 autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:<Space>:r !cat ../class.conf<Enter>kJ3jo<Enter><Esc>
->>>>>>> 037214888bdcf1807fff1c22610042554511ea8a
-
+"
 " Python snippets
 autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter>pass<Esc>?$name<Enter>ct(
 autocmd FileType python nnoremap <leader>mm odef<Space>$name$(self):<Enter>pass<Esc>?$name<Enter>ct(
