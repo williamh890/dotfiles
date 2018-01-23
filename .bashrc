@@ -179,6 +179,8 @@ alias python=python3
 alias pserver='python3 -m http.server'
 
 alias snipper-tool='shutter'
+alias logisim='java -jar ~/Programs/logisim-generic-2.7.1.jar &'
+alias glslang='~/Programs/glslang/bin/glslangValidator'
 
 alias prune="sudo docker system prune"
 alias x="xdg-open"

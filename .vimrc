@@ -47,7 +47,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'Galooshi/vim-import-js'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'Quramy/vim-js-pretty-template'
 
 " GLSL
 Plugin 'tikhomirov/vim-glsl'
@@ -174,7 +173,11 @@ set ai "auto indent
 set si "smart indent
 set wrap "wrap lines
 
+<<<<<<< HEAD
 autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:a<Space>
+=======
+autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:<Space>:r !cat ../class.conf<Enter>kJ3jo<Enter><Esc>
+>>>>>>> 037214888bdcf1807fff1c22610042554511ea8a
 
 " Python snippets
 autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter>pass<Esc>?$name<Enter>ct(
@@ -185,11 +188,6 @@ autocmd FileType python nnoremap <leader>ma o@abstractmethod<Enter>def $name$(se
 autocmd FileType python nnoremap <leader>mn oif<Space>__name__<Space>==<Space>"__main__":<Enter>pass<Esc>b
 autocmd FileType python nnoremap <leader>s. iself.<Esc>
 
-autocmd FileType javascript nnoremap <leader>im oimport<Space>{}<Space>from<Space>'';<Esc>F{a<Space><Space><Esc>i
-autocmd FileType javascript nnoremap <leader>ia oimport<Space>*<Space>as<Space>from<Space>'';<Esc>Fsa<Space>
-autocmd FileType typescript nnoremap <leader>im oimport<Space>{}<Space>from<Space>'';<Esc>F{a<Space><Space><Esc>i
-autocmd FileType typescript nnoremap <leader>ia oimport<Space>*<Space>as<Space>from<Space>'';<Esc>Fsa<Space>
-
 for prefix in ['i', 'n', 'v']
     for key in ['<Up>', '<Down>', '<Left>', '<Right>']
         exe prefix . "noremap " . key . " <Nop>"
@@ -198,11 +196,6 @@ endfor
 
 " Plugin
 
-" Ale
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-
 " MatchTagAlways
 let g:mta_use_matchparen_group = 1
 
@@ -210,8 +203,12 @@ let g:mta_use_matchparen_group = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 set completeopt-=preview
-"
+
 " Ale
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
@@ -245,8 +242,6 @@ let g:user_emmet_settings = {
 
 autocmd FileType html,css,javascript,javascript.jsx EmmetInstall
 
-autocmd FileType javascript JsPreTmpl html
-autocmd FileType typescript JsPreTmpl markdown
 
 " filenames like *.xml, *.html, *.xhtml, ...
 " Then after you press <kbd>&gt;</kbd> in these files, this plugin will try to close the current tag.
