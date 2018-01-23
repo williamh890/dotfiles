@@ -174,7 +174,6 @@ set ai "auto indent
 set si "smart indent
 set wrap "wrap lines
 
-
 autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:a<Space>
 
 " Python snippets
@@ -235,7 +234,7 @@ vmap <expr> D DVB_Duplicate()
 let g:DVB_TrimWS = 1
 
 " only use emmet on correct file types
-let g:user_emmet_leader_key='e'
+let g:user_emmet_leader_key=',e'
 let g:user_emmet_install_global = 0
 
 let g:user_emmet_settings = {
@@ -271,6 +270,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+nnoremap <leader>p :CtrlPClearAllCaches<cr>
 nnoremap <leader>t :CtrlPTag<cr>
 
 " Airline
