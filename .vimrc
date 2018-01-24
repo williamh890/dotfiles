@@ -174,7 +174,7 @@ set si "smart indent
 set wrap "wrap lines
 
 autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:<Space>:r !cat ../class.conf<Enter>kJ3jo<Enter><Esc>
-
+"
 " Python snippets
 autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter>pass<Esc>?$name<Enter>ct(
 autocmd FileType python nnoremap <leader>mm odef<Space>$name$(self):<Enter>pass<Esc>?$name<Enter>ct(
@@ -261,6 +261,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+nnoremap <leader>p :CtrlPClearAllCaches<cr>
 nnoremap <leader>t :CtrlPTag<cr>
 
 " Airline

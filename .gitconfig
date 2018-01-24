@@ -15,4 +15,6 @@
     pl = pull
     ps = push
 [credential]
-	helper = cache --timeout=360000
+    helper = cache --timeout=360000
+[push]
+	default = simple
