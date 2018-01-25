@@ -53,6 +53,7 @@ Plugin 'tikhomirov/vim-glsl'
 
 "Python
 Plugin 'tell-k/vim-autopep8'
+Plugin 'python-mode/python-mode'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -213,6 +214,11 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
+" Pymode
+let g:pymode_rope=0
+let g:pymode_lint = 0
+let g:pymode_rope_completion = 0
+
 " Flake8 autoformater
 let g:autopep8_disable_show_diff=1
 autocmd BufWritePost *.py call Autopep8()
@@ -230,14 +236,7 @@ let g:DVB_TrimWS = 1
 let g:user_emmet_leader_key=',e'
 let g:user_emmet_install_global = 0
 
-let g:user_emmet_settings = {
-\  'javascript.jsx' : {
-\      'extends' : 'jsx',
-\  },
-\}
-
 autocmd FileType html,css,javascript,javascript.jsx EmmetInstall
-
 
 " filenames like *.xml, *.html, *.xhtml, ...
 " Then after you press <kbd>&gt;</kbd> in these files, this plugin will try to close the current tag.
@@ -260,6 +259,8 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+let python_highlight_all = 1
 
 nnoremap <leader>p :CtrlPClearAllCaches<cr>
 nnoremap <leader>t :CtrlPTag<cr>
