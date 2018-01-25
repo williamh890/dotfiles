@@ -135,16 +135,17 @@ export SCONS_CONFIG_DIR=/home/william/isce_requirements
 
 DIR_CMD='pushd'
 TSP_REPO='~/repositories/hyp3-time-series'
-FALL_CLASSES='~/repositories/classes/fall-2017'
+SEMESTER='~/repositories/classes/spring-2018'
+
 
 alias weka='java -jar ~/Programs/weka-3-8-1/weka.jar'
 
-alias fall-classes='eval $DIR_CMD $FALL_CLASSES'
-alias mining='eval $DIR_CMD $FALL_CLASSES/mining'
-alias stats='eval $DIR_CMD $FALL_CLASSES/stats'
-alias algos='eval $DIR_CMD $FALL_CLASSES/algos'
-alias graphics='eval $DIR_CMD $FALL_CLASSES/graphics'
-alias ethics='eval $DIR_CMD $FALL_CLASSES/ethics'
+alias classes='eval $DIR_CMD $SEMESTER'
+alias construction='eval $DIR_CMD $SEMESTER/construction'
+alias architecture='eval $DIR_CMD $SEMESTER/architecture'
+alias langs='eval $DIR_CMD $SEMESTER/langs'
+alias rendering='eval $DIR_CMD $SEMESTER/rendering'
+alias ai='eval $DIR_CMD $SEMESTER/ai'
 
 alias tsp='eval $DIR_CMD $TSP_REPO'
 alias tspl='eval $DIR_CMD $TSP_REPO/Lambdas'
