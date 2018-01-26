@@ -47,13 +47,14 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'Galooshi/vim-import-js'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'jason0x43/vim-js-indent'
 
 " GLSL
 Plugin 'tikhomirov/vim-glsl'
 
 "Python
 Plugin 'tell-k/vim-autopep8'
-Plugin 'python-mode/python-mode'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -200,6 +201,20 @@ let g:mta_use_matchparen_group = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 set completeopt-=preview
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'qf' : 1,
+      \ 'notes' : 1,
+      \ 'markdown' : 1,
+      \ 'unite' : 1,
+      \ 'text' : 1,
+      \ 'vimwiki' : 1,
+      \ 'pandoc' : 1,
+      \ 'infolog' : 1,
+      \ 'mail' : 1,
+      \ 'typescript': 1,
+      \ 'ts': 1
+      \}
 
 " Ale
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
@@ -213,11 +228,6 @@ let g:ale_fix_on_save = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-" Pymode
-let g:pymode_rope=0
-let g:pymode_lint = 0
-let g:pymode_rope_completion = 0
 
 " Flake8 autoformater
 let g:autopep8_disable_show_diff=1
