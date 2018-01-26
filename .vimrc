@@ -275,6 +275,9 @@ let python_highlight_all = 1
 nnoremap <leader>p :CtrlPClearAllCaches<cr>
 nnoremap <leader>t :CtrlPTag<cr>
 
+"
+let g:tsuquyomi_disable_quickfix = 1
+
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
