@@ -6,13 +6,10 @@ filetype off                  " required
 
 set encoding=utf-8
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" " alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
 
-" " let Vundle manage Vundle, required
+" Plugin Manager
 Plugin 'VundleVim/Vundle.vim'
 
 " Core Plugins
@@ -55,6 +52,12 @@ Plugin 'tikhomirov/vim-glsl'
 
 "Python
 Plugin 'tell-k/vim-autopep8'
+
+" C++
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
+" Latex
+Plugin 'lervag/vimtex'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -275,7 +278,6 @@ let python_highlight_all = 1
 nnoremap <leader>p :CtrlPClearAllCaches<cr>
 nnoremap <leader>t :CtrlPTag<cr>
 
-"
 let g:tsuquyomi_disable_quickfix = 1
 
 " Airline
@@ -299,6 +301,12 @@ let g:jsx_ext_required = 0
 " Whitespace plugin
 highlight ExtraWhitespace ctermbg=253
 autocmd BufEnter * EnableStripWhitespaceOnSave
+
+" vim-cpp-enhanced-highlight
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_class_scope_highlight = 1
+let g:cpp_experimental_template_highlight = 1
 
 " Put these lines at the very end of your vimrc file.
 

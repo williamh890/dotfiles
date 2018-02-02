@@ -143,11 +143,20 @@ def setup_vim():
     powerline_fonts()
 
 
+def installLinters():
+    cmds = [
+        'luarocks install luacheck'
+    ]
+
+    for cmd in cmds:
+        system(cmd)
+
+
 def link_dotfiles():
     dotfiles_path = expanduser('~/repositories/dotfiles/')
 
     # Copy dotfiles into home directory
-    for dotfile in ['.bashrc', '.vimrc', '.tmux.conf']:
+    for dotfile in ['.bashrc', '.vimrc', '.tmux.conf', '.inputrc']:
         path = join(dotfiles_path, dotfile)
         system("ln {} ~".format(path))
 
