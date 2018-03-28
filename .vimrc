@@ -59,6 +59,9 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 " Latex
 Plugin 'lervag/vimtex'
 
+" Markdown
+Plugin 'JamshedVesuna/vim-markdown-preview'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -307,6 +310,10 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
+
+" Markdown Preivewer
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_github=1
 
 " Put these lines at the very end of your vimrc file.
 

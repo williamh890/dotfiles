@@ -187,6 +187,7 @@ alias glslang='~/Programs/glslang/bin/glslangValidator'
 
 alias prune="sudo docker system prune"
 alias x="xdg-open"
+# This is for vimtex to work
 
 alias large-files='sudo du -h / | grep -E "[0-9]G"'
 BASE16_SHELL=$HOME/.config/base16-shell/
