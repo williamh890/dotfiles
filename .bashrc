@@ -139,6 +139,9 @@ DIR_CMD='pushd'
 TSP_REPO='~/repositories/hyp3-time-series'
 SEMESTER='~/repositories/classes/spring-2018'
 
+alias tls='tmux ls'
+alias ta='tmux a -t '
+alias tn='tmux new -s '
 
 alias weka='java -jar ~/Programs/weka-3-8-1/weka.jar'
 

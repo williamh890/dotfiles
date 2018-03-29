@@ -63,16 +63,6 @@ def install_processing():
 # Install youCompleteMe and all of its dependencies
 def ycm_setup():
     print("INSTALLING YOUCOMPLETEME DEPENDENCIES")
-    packages = ['build-essential', 'python-pip',
-                'cmake', 'python-dev', 'python3-dev']
-
-    for p in packages:
-        install_pkg = "sudo apt-get install {p} -y".format(p=p)
-        try:
-            system(install_pkg)
-        except Exception as e:
-            print(e)
-            print("ERROR installing package {}".format(p))
 
     system('sudo pip install --upgrade autopep8')
     # Run the ycm install script
@@ -143,12 +133,21 @@ def setup_vim():
     powerline_fonts()
 
 
-def install_inters():
+def install_npm():
+    cmds = [
+        "curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -",
+        "sudo apt-get install -y nodejs"
+    ]
+
+    for cmd in cmds:
+        system(cmd)
+
+
+def install_linters():
     cmds = [
         'luarocks install luacheck',
         'npm install -g sass-lint',
-        'npm install -g csslint',
-        'sudo apt install shellcheck'
+        'npm install -g csslint'
     ]
 
     for cmd in cmds:
@@ -159,14 +158,13 @@ def link_dotfiles():
     dotfiles_path = expanduser('~/repositories/dotfiles/')
 
     # Copy dotfiles into home directory
-    for dotfile in ['.bashrc', '.vimrc', '.tmux.conf', '.inputrc']:
+    for dotfile in ['.bashrc', '.vimrc', '.tmux.conf', '.inputrc', '.gitconfig']:
         path = join(dotfiles_path, dotfile)
         system("ln {} ~".format(path))
 
 
 def install_chrome():
     cmds = [
-        "sudo apt -y install libxss1 libappindicator1 libindicator7",
         "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
         "sudo dpkg -i google-chrome-stable_current_amd64.deb",
         "sudo apt-get install -f"
@@ -190,7 +188,17 @@ def setup_capslock():
         f.write("xmodmap .xmodmap")
 
 
+def install_packages():
+    pkgs = ""
+    for pkg in open('packages.txt'):
+        pkgs += pkg.strip() + " "
+    print(pkgs)
+    system('sudo apt install -y {}'.format(pkgs))
+
+
 def setup():
+    install_packages()
+
     install_chrome()
     repos_path = expanduser("~/repositories")
 
@@ -205,9 +213,12 @@ def setup():
 
     setup_vim()
 
+    install_npm()
+    install_linters()
+
     print()
     print(config['font_reminder'])
 
 
 if __name__ == "__main__":
-    setup_capslock()
+    install_packages()
