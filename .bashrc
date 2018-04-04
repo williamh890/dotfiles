@@ -90,7 +90,7 @@ set -o vi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -AhlF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -139,19 +139,17 @@ DIR_CMD='pushd'
 TSP_REPO='~/repositories/hyp3-time-series'
 SEMESTER='~/repositories/classes/spring-2018'
 
-alias tls='tmux ls'
-
-function ta {
-    echo "tmux a -t $1"
-}
-
-alias tn='tmux new -s '
 
 start-env() {
     source /home/wbhorn/envs/$1/bin/activate
 }
 
+
 alias weka='java -jar ~/Programs/weka-3-8-1/weka.jar'
+
+alias tls='tmux ls'
+alias ta='tmux a -t '
+alias tn='tmux new -s '
 
 alias classes='eval $DIR_CMD $SEMESTER'
 alias construction='eval $DIR_CMD $SEMESTER/construction'
@@ -219,3 +217,5 @@ export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias ocean-id="167.99.149.98"
