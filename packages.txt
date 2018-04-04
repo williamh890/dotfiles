@@ -14,3 +14,6 @@ tmux
 chrome-gnome-shell
 haskell-platform
 shellcheck
+vim-gtk
+blender
+meshlab

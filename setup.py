@@ -1,8 +1,3 @@
-# setup.py
-# William Horn
-
-# Script used to setup a linux box with all of my settings
-
 from os import makedirs as mkdirs, system
 from os.path import expanduser, join
 from sys import argv
@@ -11,7 +6,6 @@ import json
 import requests
 import tarfile
 
-# Load in settings from json file
 setup_file = "setup.json" if len(argv[1:]) == 0 else argv[1]
 with open(setup_file) as f:
     config = json.load(f)
@@ -51,7 +45,7 @@ def install_processing():
 
     cmd = "curl -L {url} > {path}".format(url=url, path=tar_path)
     print(cmd)
-    # system(cmd)
+    system(cmd)
 
     with tarfile.open(tar_path) as ptar:
         ptar.extractall()
@@ -65,7 +59,6 @@ def ycm_setup():
     print("INSTALLING YOUCOMPLETEME DEPENDENCIES")
 
     system('sudo pip install --upgrade autopep8')
-    # Run the ycm install script
     system("cd ~/.vim/bundle/YouCompleteMe  && ./install.py --clang-completer")
 
 
@@ -157,21 +150,23 @@ def install_linters():
 def link_dotfiles():
     dotfiles_path = expanduser('~/repositories/dotfiles/')
 
-    # Copy dotfiles into home directory
     for dotfile in ['.bashrc', '.vimrc', '.tmux.conf', '.inputrc', '.gitconfig']:
         path = join(dotfiles_path, dotfile)
         system("ln {} ~".format(path))
 
 
-def install_chrome():
-    cmds = [
-        "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
-        "sudo dpkg -i google-chrome-stable_current_amd64.deb",
-        "sudo apt-get install -f"
-    ]
+def install_programs():
+    for prog in config['programs']:
+        url, deb = prog['url'], f"{prog['name']}.deb"
+        print(f"installing {deb}")
+        cmds = [
+            f"curl {url} -L > {deb}",
+            f"sudo apt install ./{deb} -y"
+        ]
 
-    for cmd in cmds:
-        system(cmd)
+        for cmd in cmds:
+            print(cmd)
+            system(cmd)
 
 
 def setup_capslock():
@@ -194,6 +189,17 @@ def install_packages():
         pkgs += pkg.strip() + " "
     print(pkgs)
     system('sudo apt install -y {}'.format(pkgs))
+
+
+def install_fingerprint_reader():
+    cmds = [
+        "sudo add-apt-repository ppa:fingerprint/fingerprint-gui -y",
+        "sudo apt update -y",
+        "sudo apt install libbsapi policykit-1-fingerprint-gui fingerprint-gui -y"
+    ]
+
+    for cmd in cmds:
+        system(cmd)
 
 
 def setup():
@@ -221,4 +227,4 @@ def setup():
 
 
 if __name__ == "__main__":
-    install_packages()
+    install_programs()
