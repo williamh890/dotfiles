@@ -140,8 +140,12 @@ TSP_REPO='~/repositories/hyp3-time-series'
 SEMESTER='~/repositories/classes/spring-2018'
 
 
-start-env() {
+activate() {
     source /home/wbhorn/envs/$1/bin/activate
+}
+
+mkenv() {
+    virtualenv ~/envs/$1
 }
 
 
@@ -210,6 +214,9 @@ function pushd {
     builtin pushd "$@" && ls -F
 }
 
+export GITHUB="https://www.github.com"
+export MY_GITHUB="https://www.github.com/williamh890"
+
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
@@ -218,4 +225,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias ocean-id="167.99.149.98"

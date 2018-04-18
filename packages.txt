@@ -17,3 +17,4 @@ shellcheck
 vim-gtk
 blender
 meshlab
+shutter
