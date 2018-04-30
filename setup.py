@@ -150,7 +150,7 @@ def install_linters():
 def link_dotfiles():
     dotfiles_path = expanduser('~/repositories/dotfiles/')
 
-    for dotfile in ['.bashrc', '.vimrc', '.tmux.conf', '.inputrc', '.gitconfig']:
+    for dotfile in ['.bashrc', '.vimrc', '~/.vim/plugins.vim', '.tmux.conf', '.inputrc', '.gitconfig']:
         path = join(dotfiles_path, dotfile)
         system("ln {} ~".format(path))
 
