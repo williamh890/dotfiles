@@ -90,7 +90,7 @@ set -o vi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -AhlF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -140,7 +140,20 @@ TSP_REPO='~/repositories/hyp3-time-series'
 SEMESTER='~/repositories/classes/spring-2018'
 
 
+activate() {
+    source /home/wbhorn/envs/$1/bin/activate
+}
+
+mkenv() {
+    virtualenv ~/envs/$1
+}
+
+
 alias weka='java -jar ~/Programs/weka-3-8-1/weka.jar'
+
+alias tls='tmux ls'
+alias ta='tmux a -t '
+alias tn='tmux new -s '
 
 alias classes='eval $DIR_CMD $SEMESTER'
 alias construction='eval $DIR_CMD $SEMESTER/construction'
@@ -187,6 +200,7 @@ alias glslang='~/Programs/glslang/bin/glslangValidator'
 
 alias prune="sudo docker system prune"
 alias x="xdg-open"
+# This is for vimtex to work
 
 alias large-files='sudo du -h / | grep -E "[0-9]G"'
 BASE16_SHELL=$HOME/.config/base16-shell/
@@ -200,6 +214,9 @@ function pushd {
     builtin pushd "$@" && ls -F
 }
 
+export GITHUB="https://www.github.com"
+export MY_GITHUB="https://www.github.com/williamh890"
+
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
@@ -207,3 +224,4 @@ export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+

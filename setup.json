@@ -7,6 +7,19 @@
 
     "font_reminder": "REMEMBER!!!! -> change font to 'Meslo LG S for Powerline regular,16pt'",
 
+    "programs": [
+        {
+            "name": "google",
+            "url": "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+        },
+        {
+            "name": "slack-desktop",
+            "url": "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.1.0-amd64.deb"
+        }
+    ],
+
     "processing_url": "http://download.processing.org/processing-3.3.6-linux64.tgz",
-    "processing_name": "processing-3.3.6"
+    "processing_name": "processing-3.3.6",
+    "date-string": " %a %d %B %Y, %l:%M %P"
+
 }

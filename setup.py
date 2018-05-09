@@ -1,8 +1,3 @@
-# setup.py
-# William Horn
-
-# Script used to setup a linux box with all of my settings
-
 from os import makedirs as mkdirs, system
 from os.path import expanduser, join
 from sys import argv
@@ -11,7 +6,6 @@ import json
 import requests
 import tarfile
 
-# Load in settings from json file
 setup_file = "setup.json" if len(argv[1:]) == 0 else argv[1]
 with open(setup_file) as f:
     config = json.load(f)
@@ -51,7 +45,7 @@ def install_processing():
 
     cmd = "curl -L {url} > {path}".format(url=url, path=tar_path)
     print(cmd)
-    # system(cmd)
+    system(cmd)
 
     with tarfile.open(tar_path) as ptar:
         ptar.extractall()
@@ -63,19 +57,8 @@ def install_processing():
 # Install youCompleteMe and all of its dependencies
 def ycm_setup():
     print("INSTALLING YOUCOMPLETEME DEPENDENCIES")
-    packages = ['build-essential', 'python-pip',
-                'cmake', 'python-dev', 'python3-dev']
-
-    for p in packages:
-        install_pkg = "sudo apt-get install {p} -y".format(p=p)
-        try:
-            system(install_pkg)
-        except Exception as e:
-            print(e)
-            print("ERROR installing package {}".format(p))
 
     system('sudo pip install --upgrade autopep8')
-    # Run the ycm install script
     system("cd ~/.vim/bundle/YouCompleteMe  && ./install.py --clang-completer")
 
 
@@ -143,13 +126,24 @@ def setup_vim():
     powerline_fonts()
 
 
+def install_npm():
+    cmds = [
+        "curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -",
+        "sudo apt-get install -y nodejs"
+    ]
+
+    for cmd in cmds:
+        system(cmd)
+
+
 def install_linters():
     cmds = [
         'luarocks install luacheck',
         'npm install -g sass-lint',
         'npm install -g csslint',
         'sudo apt install shellcheck',
-        'sudo npm install -g htmlhint'
+        'sudo npm install -g htmlhint',
+        'npm install -g csslint'
     ]
 
     for cmd in cmds:
@@ -159,22 +153,23 @@ def install_linters():
 def link_dotfiles():
     dotfiles_path = expanduser('~/repositories/dotfiles/')
 
-    # Copy dotfiles into home directory
-    for dotfile in ['.bashrc', '.vimrc', '.tmux.conf', '.inputrc']:
+    for dotfile in ['.bashrc', '.vimrc', '~/.vim/plugins.vim', '.tmux.conf', '.inputrc', '.gitconfig']:
         path = join(dotfiles_path, dotfile)
         system("ln {} ~".format(path))
 
 
-def install_chrome():
-    cmds = [
-        "sudo apt -y install libxss1 libappindicator1 libindicator7",
-        "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
-        "sudo dpkg -i google-chrome-stable_current_amd64.deb",
-        "sudo apt-get install -f"
-    ]
+def install_programs():
+    for prog in config['programs']:
+        url, deb = prog['url'], f"{prog['name']}.deb"
+        print(f"installing {deb}")
+        cmds = [
+            f"curl {url} -L > {deb}",
+            f"sudo apt install ./{deb} -y"
+        ]
 
-    for cmd in cmds:
-        system(cmd)
+        for cmd in cmds:
+            print(cmd)
+            system(cmd)
 
 
 def setup_capslock():
@@ -191,7 +186,28 @@ def setup_capslock():
         f.write("xmodmap .xmodmap")
 
 
+def install_packages():
+    pkgs = ""
+    for pkg in open('packages.txt'):
+        pkgs += pkg.strip() + " "
+    print(pkgs)
+    system('sudo apt install -y {}'.format(pkgs))
+
+
+def install_fingerprint_reader():
+    cmds = [
+        "sudo add-apt-repository ppa:fingerprint/fingerprint-gui -y",
+        "sudo apt update -y",
+        "sudo apt install libbsapi policykit-1-fingerprint-gui fingerprint-gui -y"
+    ]
+
+    for cmd in cmds:
+        system(cmd)
+
+
 def setup():
+    install_packages()
+
     install_chrome()
     repos_path = expanduser("~/repositories")
 
@@ -206,9 +222,38 @@ def setup():
 
     setup_vim()
 
+    install_npm()
+    install_linters()
+
     print()
     print(config['font_reminder'])
 
 
+def install_docker():
+    cmds = [
+        "sudo apt update",
+        "sudo apt install " +
+        "apt-transport-https " +
+        "ca-certificates " +
+        "curl " +
+        "software-properties-common -y",
+
+        "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
+
+        'sudo add-apt-repository' +
+        '"deb [arch=amd64] https://download.docker.com/linux/ubuntu ' +
+        '$(lsb_release - cs) ' +
+        'stable',
+
+        'sudo apt update',
+
+        'sudo apt install docker-ce -y'
+    ]
+
+    for cmd in cmds:
+        print(cmd)
+        system(cmd)
+
+
 if __name__ == "__main__":
-    setup_capslock()
+    install_docker()
