@@ -143,12 +143,13 @@ def setup_vim():
     powerline_fonts()
 
 
-def install_inters():
+def install_linters():
     cmds = [
         'luarocks install luacheck',
         'npm install -g sass-lint',
         'npm install -g csslint',
-        'sudo apt install shellcheck'
+        'sudo apt install shellcheck',
+        'sudo npm install -g htmlhint'
     ]
 
     for cmd in cmds:
