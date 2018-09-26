@@ -43,6 +43,7 @@ nnoremap <leader><Space> o<Esc>k
 set history=500
 set number
 set hlsearch
+set updatetime=100
 
 autocmd InsertEnter * :let b:_search=@/|let @/=''
 autocmd InsertLeave * :let @/=get(b:,'_search','')
@@ -121,6 +122,8 @@ set tw=500
 set ai "auto indent
 set si "smart indent
 set wrap "wrap lines
+
+autocmd FileType tex nnoremap <leader>c z=1<Enter>
 
 autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:<Space>:r !cat ../class.conf<Enter>kJ3jo<Enter><Esc>
 "

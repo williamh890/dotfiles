@@ -122,6 +122,7 @@ export VISUAL=vim
 export EDITOR='vim'
 
 export PATH=~/.local/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 alias eb-env="source ~/VirtualEnv/eb_cli_env/bin/activate"
 
 #ISCE
@@ -225,3 +226,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export PATH=$HOME/Programs/flutter/flutter/bin:$PATH
+alias android-studio=$HOME/Programs/android-studio/android-studio/bin/studio.sh
