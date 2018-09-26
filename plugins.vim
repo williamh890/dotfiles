@@ -101,10 +101,13 @@ let g:ale_fix_on_save = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
 
 " Flake8 autoformater
 let g:autopep8_disable_show_diff=1
-autocmd BufWritePost *.py call Autopep8()
+autocmd FileType python noremap <buffer> <leader>f :call Autopep8()<CR>
 
 " visualdrag keys
 vmap <expr> <LEFT> DVB_Drag('left')

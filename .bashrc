@@ -96,7 +96,6 @@ alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -140,21 +139,40 @@ DIR_CMD='pushd'
 TSP_REPO='~/repositories/hyp3-time-series'
 SEMESTER='~/repositories/classes/spring-2018'
 
-
-activate() {
-    source /home/wbhorn/envs/$1/bin/activate
+function aenv {
+    source ~/envs/$1/bin/activate
 }
 
-mkenv() {
-    virtualenv ~/envs/$1
+function mkenv {
+    python2 ~/envs/$1
 }
+
+function mkenv3 {
+    python3 -m venv ~/envs3/$1
+}
+
+function aenv3 {
+    source ~/envs3/$1/bin/activate
+}
+
 
 
 alias weka='java -jar ~/Programs/weka-3-8-1/weka.jar'
 
+alias trm='tmux kill-session -t '
 alias tls='tmux ls'
 alias ta='tmux a -t '
-alias tn='tmux new -s '
+
+function tn {
+    SESSION=$1
+    tmux new-session -d -s $SESSION
+
+    tmux new-window -t $SESSION
+    tmux new-window -t $SESSION
+    tmux new-window -t $SESSION
+    tmux attach-session -t $SESSION
+    tmux select-pane -R
+}
 
 alias classes='eval $DIR_CMD $SEMESTER'
 alias construction='eval $DIR_CMD $SEMESTER/construction'

@@ -39,6 +39,21 @@ nnoremap <leader>v "+p
 
 nnoremap <leader><Space> o<Esc>k
 
+" Notes header
+autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:<Space>:r !cat ../class.conf<Enter>kJ3jo<Enter><Esc>
+"
+" Python snippets
+autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter>pass<Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mm odef<Space>$name$(self):<Enter>pass<Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mf odef<Space>$name$():<Enter>pass<Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mp o@property<Enter>def $name$(self):<Enter>pass<Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>ma o@abstractmethod<Enter>def $name$(self):<Enter>pass<Esc>?$name<Enter>ct(
+autocmd FileType python nnoremap <leader>mn oif<Space>__name__<Space>==<Space>"__main__":<Enter>pass<Esc>b
+autocmd FileType python nnoremap <leader>s. iself.<Esc>
+
+" Toggle Spellcheck
+nnoremap <leader>s :setlocal spell! spelllang=en_us<CR>
+
 " Vim Settings
 set history=500
 set number
@@ -98,8 +113,6 @@ set noswapfile
 set relativenumber
 set number
 
-" Toggle Spellcheck
-map <F6> :setlocal spell! spelllang=en_us<CR>
 
 " Tabs are smarter!
 set expandtab
@@ -108,13 +121,14 @@ set smarttab
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-nnoremap <space> za
-"
+
 " 1 Tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
 
 au FileType html setl sw=2 sts=2 et
+au FileType css setl sw=2 sts=2 et
+au FileType scss setl sw=2 sts=2 et
 
 set lbr
 set tw=500
@@ -122,19 +136,6 @@ set tw=500
 set ai "auto indent
 set si "smart indent
 set wrap "wrap lines
-
-autocmd FileType tex nnoremap <leader>c z=1<Enter>
-
-autocmd FileType yaml nnoremap <leader>n CClass:<Space><Enter>Name:<Space>William<Space>Horn<Enter><Esc>:put<Space>=strftime('%b %d, %Y')<Enter>kddIDate:<Space><Esc>kk0f:<Space>:r !cat ../class.conf<Enter>kJ3jo<Enter><Esc>
-"
-" Python snippets
-autocmd FileType python nnoremap <leader>mc oclass<Space>$name$(object):<Enter>def<Space>__init__(self):<Enter>pass<Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>mm odef<Space>$name$(self):<Enter>pass<Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>mf odef<Space>$name$():<Enter>pass<Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>mp o@property<Enter>def $name$(self):<Enter>pass<Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>ma o@abstractmethod<Enter>def $name$(self):<Enter>pass<Esc>?$name<Enter>ct(
-autocmd FileType python nnoremap <leader>mn oif<Space>__name__<Space>==<Space>"__main__":<Enter>pass<Esc>b
-autocmd FileType python nnoremap <leader>s. iself.<Esc>
 
 for prefix in ['i', 'n', 'v']
     for key in ['<Up>', '<Down>', '<Left>', '<Right>']

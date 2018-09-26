@@ -140,6 +140,9 @@ def install_linters():
     cmds = [
         'luarocks install luacheck',
         'npm install -g sass-lint',
+        'npm install -g csslint',
+        'sudo apt install shellcheck',
+        'sudo npm install -g htmlhint',
         'npm install -g csslint'
     ]
 
