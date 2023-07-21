@@ -87,7 +87,12 @@ require('lazy').setup({
       require("nvim-autopairs").setup {}
     end
   },
-
+  {
+    "cappyzawa/trim.nvim",
+    config = function()
+      require("trim").setup({})
+    end
+  },
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   { -- LSP Configuration & Plugins
@@ -521,22 +526,22 @@ local M = {}
 -- function to create a list of commands and convert them to autocommands
 -------- This function is taken from https://github.com/norcalli/nvim_utils
 function M.nvim_create_augroups(definitions)
-    for group_name, definition in pairs(definitions) do
-        vim.api.nvim_command('augroup '..group_name)
-        vim.api.nvim_command('autocmd!')
-        for _, def in ipairs(definition) do
-            local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
-            vim.api.nvim_command(command)
-        end
-        vim.api.nvim_command('augroup END')
+  for group_name, definition in pairs(definitions) do
+    vim.api.nvim_command('augroup '..group_name)
+    vim.api.nvim_command('autocmd!')
+    for _, def in ipairs(definition) do
+      local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+      vim.api.nvim_command(command)
     end
+    vim.api.nvim_command('augroup END')
+  end
 end
 
 local autoCommands = {
-    -- other autocommands
-    open_folds = {
-        {"BufReadPost,FileReadPost", "*", "normal zR"}
-    }
+  -- other autocommands
+  open_folds = {
+    {"BufReadPost,FileReadPost", "*", "normal zR"}
+  }
 }
 
 M.nvim_create_augroups(autoCommands)
