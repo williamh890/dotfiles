@@ -72,12 +72,33 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
+  'dstein64/nvim-scrollview',
   -- Custom Plugins
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require("gitsigns").setup()
+    end
+  },
   {
     'kylechui/nvim-surround',
     config = function()
       require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require("nvim-ts-autotag").setup({
+      })
+    end
+  },
+
+  {
+    'brenoprata10/nvim-highlight-colors',
+    config = function()
+      require("nvim-highlight-colors").setup({
       })
     end
   },
@@ -251,6 +272,8 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+vim.o.t_Co = 256
+vim.g.matchup_matchparen_offscreen = { method = "popup" }
 
 -- [[ Basic Keymaps ]]
 
@@ -283,12 +306,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
+    file_ignore_patterns = {
+      'cdk.out', 'node_modules'
+    },
     mappings = {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
       },
     },
+  },
+  pickers = {
+    find_files = {
+      hidden = true
+    }
   },
 }
 
@@ -376,6 +407,9 @@ require('nvim-treesitter.configs').setup {
         ['<leader>A'] = '@parameter.inner',
       },
     },
+  },
+  matchup = {
+    enable = true,
   },
 }
 
@@ -519,32 +553,33 @@ cmp.setup {
   },
 }
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.swapfile = false
 
-local M = {}
--- function to create a list of commands and convert them to autocommands
--------- This function is taken from https://github.com/norcalli/nvim_utils
-function M.nvim_create_augroups(definitions)
-  for group_name, definition in pairs(definitions) do
-    vim.api.nvim_command('augroup '..group_name)
-    vim.api.nvim_command('autocmd!')
-    for _, def in ipairs(definition) do
-      local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
-      vim.api.nvim_command(command)
-    end
-    vim.api.nvim_command('augroup END')
-  end
-end
-
-local autoCommands = {
-  -- other autocommands
-  open_folds = {
-    {"BufReadPost,FileReadPost", "*", "normal zR"}
-  }
-}
-
-M.nvim_create_augroups(autoCommands)
+-- local M = {}
+-- -- function to create a list of commands and convert them to autocommands
+-- -------- This function is taken from https://github.com/norcalli/nvim_utils
+-- function M.nvim_create_augroups(definitions)
+--   for group_name, definition in pairs(definitions) do
+--     vim.api.nvim_command('augroup '..group_name)
+--     vim.api.nvim_command('autocmd!')
+--     for _, def in ipairs(definition) do
+--       local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+--       vim.api.nvim_command(command)
+--     end
+--     vim.api.nvim_command('augroup END')
+--   end
+-- end
+--
+-- local autoCommands = {
+--   -- other autocommands
+--   open_folds = {
+--     {"BufReadPost,FileReadPost", "*", "normal zR"}
+--   }
+-- }
+--
+-- M.nvim_create_augroups(autoCommands)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
