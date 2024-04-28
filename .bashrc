@@ -212,6 +212,8 @@ alias interface-env="source ~/VirtualEnv/time-series-interface/bin/activate"
 
 alias python=python3
 alias pserver='python3 -m http.server'
+alias vim='/home/wbhorn/Programs/squashfs-root/usr/bin/nvim'
+alias nvim='/home/wbhorn/Programs/squashfs-root/usr/bin/nvim'
 
 alias snipper-tool='shutter'
 alias logisim='java -jar ~/Programs/logisim-generic-2.7.1.jar &'
@@ -244,5 +246,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH=$HOME/Programs/flutter/flutter/bin:$PATH
-alias android-studio=$HOME/Programs/android-studio/android-studio/bin/studio.sh
+export PATH=/usr/bin:$PATH
+
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
+nvm use 20
+
+alias team-rng='~/Programs/team-rng.py'
