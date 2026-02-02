@@ -1,6 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -84,18 +83,22 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-set -o vi
-
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -AhlF'
+alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+alias vim='nvim'
+export EDITOR="nvim"
+export VISUAL="$EDITOR"
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -114,51 +117,20 @@ if ! shopt -oq posix; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
-  fi
-fi
+  fi fi
 
-export VISUAL=vim
-export EDITOR='vim'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH=~/.local/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
-alias eb-env="source ~/VirtualEnv/eb_cli_env/bin/activate"
+# Bash Config
 
-#ISCE
-export ISCE_HOME=/usr/local/isce
-export PATH=$PATH:$ISCE_HOME/bin:$ISCE_HOME/applications
-export PYTHONPATH=$PYTHONPATH:/usr/local
+set -o vi
 
-#GDAL
-export CPLUS_INCLUDE_PATH=/usr/include/gdal
-export C_INCLUDE_PATH=/usr/include/gdal
+alias x="xdg-open"
+alias untar='tar -xvf'
 
-export SCONS_CONFIG_DIR=/home/william/isce_requirements
-
-DIR_CMD='pushd'
-TSP_REPO='~/repositories/hyp3-time-series'
-SEMESTER='~/repositories/classes/spring-2018'
-
-function aenv {
-    source ~/envs/$1/bin/activate
-}
-
-function mkenv {
-    python2 ~/envs/$1
-}
-
-function mkenv3 {
-    python3 -m venv ~/envs3/$1
-}
-
-function aenv3 {
-    source ~/envs3/$1/bin/activate
-}
-
-
-
-alias weka='java -jar ~/Programs/weka-3-8-1/weka.jar'
-
+# TMUX Config
 alias trm='tmux kill-session -t '
 alias tls='tmux ls'
 alias ta='tmux a -t '
@@ -174,81 +146,59 @@ function tn {
     tmux select-pane -R
 }
 
-alias classes='eval $DIR_CMD $SEMESTER'
-alias construction='eval $DIR_CMD $SEMESTER/construction'
-alias architecture='eval $DIR_CMD $SEMESTER/architecture'
-alias langs='eval $DIR_CMD $SEMESTER/langs'
-alias rendering='eval $DIR_CMD $SEMESTER/rendering'
-alias ai='eval $DIR_CMD $SEMESTER/ai'
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/wbhorn/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/wbhorn/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/home/wbhorn/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/wbhorn/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-alias tsp='eval $DIR_CMD $TSP_REPO'
-alias tspl='eval $DIR_CMD $TSP_REPO/Lambdas'
-alias tspc='eval $DIR_CMD $TSP_REPO/Containers'
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba shell init' !!
+export MAMBA_EXE='/home/wbhorn/miniforge3/bin/mamba';
+export MAMBA_ROOT_PREFIX='/home/wbhorn/miniforge3';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
 
-alias water-monitor='python ~/Programs/water-monitor/monitor.py'
+# Add current environment (conda/mamba/venv) as a Jupyter kernel
+function add-kernel() {
+    # Determine env name
+    local env_path="${CONDA_PREFIX:-$VIRTUAL_ENV}"
+    if [[ -z "$env_path" ]]; then
+        echo "No environment active. Using current directory name."
+        env_path=$(pwd)
+    fi
+    local env_name=${1:-$(basename "$env_path")}
+    local display_name=${2:-"Python ($env_name)"}
 
-alias tspcb='eval $DIR_CMD $TSP_REPO/Containers/Bundler'
-alias tspcgi='eval $DIR_CMD $TSP_REPO/Containers/Giant'
-alias tspcga='eval $DIR_CMD $TSP_REPO/Containers/Gamma'
-alias tspci='eval $DIR_CMD $TSP_REPO/Containers/Isce'
-alias tspi='eval $DIR_CMD $TSP_REPO/Interface'
-
-API_REPO='$HOME/repositories/hyp3-api'
-alias api='eval $DIR_CMD $API_REPO'
-alias apif='eval $DIR_CMD $API_REPO/hyp3-flask'
-alias apia='eval $DIR_CMD $API_REPO/hyp3-api'
-
-alias terminator='python3 $TSP_REPO/Lambdas/Delegator/utils/terminator.py'
-alias catch='curl -L https://github.com/philsquared/Catch/releases/download/v1.10.0/catch.hpp > catch.hpp'
-
-alias empty-trash='sudo rm -rf /home/william/.local/share/Trash/files/*'
-alias start-last-container='docker start  `docker ps -q -l` && docker attach `docker ps -q -l`'
-alias safes='eval $DIR_CMD $HOME/time-series-data/granule_safes'
-alias call='git add . && git commit'
-
-alias untar='tar -xvf'
-
-alias interface-env="source ~/VirtualEnv/time-series-interface/bin/activate"
-
-alias python=python3
-alias pserver='python3 -m http.server'
-alias vim='/home/wbhorn/Programs/squashfs-root/usr/bin/nvim'
-alias nvim='/home/wbhorn/Programs/squashfs-root/usr/bin/nvim'
-
-alias snipper-tool='shutter'
-alias logisim='java -jar ~/Programs/logisim-generic-2.7.1.jar &'
-alias glslang='~/Programs/glslang/bin/glslangValidator'
-
-alias prune="sudo docker system prune"
-alias x="xdg-open"
-# This is for vimtex to work
-
-alias large-files='sudo du -h / | grep -E "[0-9]G"'
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-function cd {
-    builtin cd "$@" && ls -F
+    python -m ipykernel install --user --name "$env_name" --display-name "$display_name"
+    echo "Added Jupyter kernel '$display_name'"
 }
 
-function pushd {
-    builtin pushd "$@" && ls -F
+# Remove a Jupyter kernel
+function del-kernel() {
+    local env_path="${CONDA_PREFIX:-$VIRTUAL_ENV}"
+    if [[ -z "$env_path" ]]; then
+        echo "No environment active. Using current directory name."
+        env_path=$(pwd)
+    fi
+    local env_name=${1:-$(basename "$env_path")}
+    jupyter kernelspec uninstall -y "$env_name"
+    echo "Removed Jupyter kernel '$env_name'"
 }
 
-export GITHUB="https://www.github.com"
-export MY_GITHUB="https://www.github.com/williamh890"
-
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH=/usr/bin:$PATH
-
-export DOCKER_HOST=unix:///run/user/1000/docker.sock
-nvm use 20
-
-alias team-rng='~/Programs/team-rng.py'
+[ -f "/home/wbhorn/.ghcup/env" ] && . "/home/wbhorn/.ghcup/env" # ghcup-env
