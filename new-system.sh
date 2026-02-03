@@ -53,3 +53,9 @@ sudo snap install code --classic
 
 # Install qgis https://qgis.org/resources/installation-guide/#debian--ubuntu
 # sudo apt install gnupg software-properties-common
+#
+
+# Setup github ssh key
+# https://chatgpt.com/s/t_69813989bc6c8191af8ec42d1b819140
+
+ # Optional: remap caps lock to escape (somehow, xremap, gnome-tweaks???)
