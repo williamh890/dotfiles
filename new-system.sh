@@ -1,3 +1,5 @@
+mkdir ~/Data ~/Repositories ~/Programs
+
 sudo apt update -y
 sudo apt install build-essential -y
 sudo apt install git curl wget tmux nfs-common -y
