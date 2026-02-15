@@ -2,7 +2,7 @@ mkdir ~/Data ~/Repositories ~/Programs
 
 sudo apt update -y
 sudo apt install build-essential -y
-sudo apt install git curl wget tmux nfs-common -y
+sudo apt install git curl wget tmux nfs-common htop nvtop tree -y
 
 git clone https://github.com/awslabs/git-secrets.git
 cd git-secrets
