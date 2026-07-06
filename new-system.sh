@@ -60,4 +60,7 @@ sudo snap install code --classic
 # Setup github ssh key
 # https://chatgpt.com/s/t_69813989bc6c8191af8ec42d1b819140
 
+# Setup PIV Card and add to chrome
+# https://chatgpt.com/c/69937261-a7c0-832d-acd9-9c0a2d288737
+
  # Optional: remap caps lock to escape (somehow, xremap, gnome-tweaks???)

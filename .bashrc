@@ -122,6 +122,7 @@ if ! shopt -oq posix; then
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm use default > /dev/null
 
 # Bash Config
 
@@ -202,3 +203,9 @@ function del-kernel() {
 }
 
 [ -f "/home/wbhorn/.ghcup/env" ] && . "/home/wbhorn/.ghcup/env" # ghcup-env
+
+. "$HOME/.cargo/env"
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+source /home/wbhorn/Repositories/williamh890/ps-insar-fairbanks/stamps-fork/StaMPS/StaMPS_CONFIG.bash
